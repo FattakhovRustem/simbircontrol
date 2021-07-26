@@ -1,0 +1,27 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: createTable-project
+      author: Fattakhov Rustem
+      changes:
+        - createTable:
+            tableName: project
+            columns:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+              - column:
+
+  - changeSet:
+  - changeSet:
+  - changeSet:
+  - changeSet:
