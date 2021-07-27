@@ -8,12 +8,12 @@ public class UserConverter {
 
     public static User fromUserRequestDtoToUser(UserRequestDto requestDto) {
         User user = new User();
+        user.setId(requestDto.getId());
         user.setLogin(requestDto.getLogin());
         user.setName(requestDto.getName());
         user.setPassword(requestDto.getPassword());
         user.setRole(requestDto.getRole());
         user.setSurname(requestDto.getSurname());
-
         return user;
     }
 

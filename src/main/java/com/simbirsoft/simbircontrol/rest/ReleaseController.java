@@ -24,22 +24,22 @@ public class ReleaseController {
     @Operation(summary = "Получить релиз")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReleaseResponseDto> getRelease(@PathVariable Integer id) {
-        releaseService.getById(id);
-        return ResponseEntity.ok().build();
+        ReleaseResponseDto responseDto = releaseService.getById(id);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Создать релиз")
     @PostMapping(value = "/create")
     public ResponseEntity<ReleaseResponseDto> createRelease(@RequestBody ReleaseRequestDto requestDto) {
-        releaseService.create(requestDto);
-        return ResponseEntity.ok().build();
+        ReleaseResponseDto responseDto = releaseService.create(requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Изменить релиз")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ReleaseResponseDto> updateRelease(@PathVariable Integer id, @RequestBody ReleaseRequestDto requestDto) {
-        releaseService.updateById(id, requestDto);
-        return ResponseEntity.ok().build();
+        ReleaseResponseDto responseDto = releaseService.updateById(id, requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Удалить релиз")

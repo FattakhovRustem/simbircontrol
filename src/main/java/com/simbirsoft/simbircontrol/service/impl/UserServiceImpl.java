@@ -1,11 +1,9 @@
 package com.simbirsoft.simbircontrol.service.impl;
 
-import com.simbirsoft.simbircontrol.entity.User;
 import com.simbirsoft.simbircontrol.repository.UserRepository;
 import com.simbirsoft.simbircontrol.rest.dto.UserRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.UserResponseDto;
 import com.simbirsoft.simbircontrol.service.UserService;
-import com.simbirsoft.simbircontrol.service.converter.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

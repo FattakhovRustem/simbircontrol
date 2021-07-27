@@ -32,29 +32,29 @@ public class TaskController {
     @Operation(summary = "Получить список задач")
     @GetMapping(value = "/all")
     public ResponseEntity<List<TaskResponseDto>> getAllTasks() {
-        taskService.getAll();
-        return ResponseEntity.ok().build();
+        List<TaskResponseDto> list = taskService.getAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @Operation(summary = "Получить задачу")
     @GetMapping(value = "/{id}")
     public ResponseEntity<TaskResponseDto> getTask(@PathVariable Integer id) {
-        taskService.getById(id);
-        return ResponseEntity.ok().build();
+        TaskResponseDto responseDto = taskService.getById(id);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Создать задачу")
     @PostMapping(value = "/create")
     public ResponseEntity<TaskResponseDto> createTask(@RequestBody TaskRequestDto requestDto) {
-        taskService.create(requestDto);
-        return ResponseEntity.ok().build();
+        TaskResponseDto responseDto = taskService.create(requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Изменить задачу")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<TaskResponseDto> updateTask(@PathVariable Integer id, @RequestBody TaskRequestDto requestDto) {
-        taskService.updateById(id, requestDto);
-        return ResponseEntity.ok().build();
+        TaskResponseDto responseDto = taskService.updateById(id, requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Удалить задачу")

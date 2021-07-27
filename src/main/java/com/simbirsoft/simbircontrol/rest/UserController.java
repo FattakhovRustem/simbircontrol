@@ -32,29 +32,29 @@ public class UserController {
     @Operation(summary = "Получить список пользователей")
     @GetMapping(value = "/all")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
-        userService.getAll();
-        return ResponseEntity.ok().build();
+        List<UserResponseDto> list = userService.getAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @Operation(summary = "Получить пользователя")
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserResponseDto> getUser(@PathVariable Integer id) {
-        userService.getById(id);
-        return ResponseEntity.ok().build();
+        UserResponseDto responseDto = userService.getById(id);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Создать пользователя")
     @PostMapping(value = "/create")
     public ResponseEntity<UserResponseDto> createTask(@RequestBody UserRequestDto requestDto) {
-        userService.create(requestDto);
-        return ResponseEntity.ok().build();
+        UserResponseDto responseDto = userService.create(requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Изменить пользователя")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable Integer id, @RequestBody UserRequestDto requestDto) {
-        userService.updateById(id, requestDto);
-        return ResponseEntity.ok().build();
+        UserResponseDto responseDto = userService.updateById(id, requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Удалить пользователя")

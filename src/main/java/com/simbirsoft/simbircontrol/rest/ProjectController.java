@@ -33,29 +33,29 @@ public class ProjectController {
     @Operation(summary = "Получить список проектов")
     @GetMapping(value = "/all")
     public ResponseEntity<List<ProjectResponseDto>> getAllProjects() {
-        projectService.getAll();
-        return ResponseEntity.ok().build();
+        List<ProjectResponseDto> list =  projectService.getAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @Operation(summary = "Получить проект")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProjectResponseDto> getProject(@PathVariable Integer id) {
-        projectService.getById(id);
-        return ResponseEntity.ok().build();
+        ProjectResponseDto responseDto = projectService.getById(id);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Создать проект")
     @PostMapping(value = "/create")
     public ResponseEntity<ProjectResponseDto> createProject(@RequestBody ProjectRequestDto requestDto) {
-        projectService.create(requestDto);
-        return ResponseEntity.ok().build();
+        ProjectResponseDto responseDto = projectService.create(requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Изменить проект")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ProjectResponseDto> updateProject(@PathVariable Integer id, @RequestBody ProjectRequestDto requestDto) {
-        projectService.updateById(id, requestDto);
-        return ResponseEntity.ok().build();
+        ProjectResponseDto responseDto = projectService.updateById(id, requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Удалить проект")

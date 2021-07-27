@@ -34,29 +34,29 @@ public class ClientController {
     @Operation(summary = "Получить список клиентов")
     @GetMapping(value = "/all")
     public ResponseEntity<List<ClientResponseDto>> getAllClients() {
-        clientService.getAll();
-        return ResponseEntity.ok().build();
+        List<ClientResponseDto> list =  clientService.getAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @Operation(summary = "Получить клиента")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ClientResponseDto> getClient(@PathVariable Integer id) {
-        clientService.getById(id);
-        return ResponseEntity.ok().build();
+        ClientResponseDto responseDto = clientService.getById(id);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Создать клиента")
     @PostMapping(value = "/create")
     public ResponseEntity<ClientResponseDto> createClient(@RequestBody ClientRequestDto requestDto) {
-        clientService.create(requestDto);
-        return ResponseEntity.ok().build();
+        ClientResponseDto responseDto = clientService.create(requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Изменить клиента")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ClientResponseDto> updateClient(@PathVariable Integer id, @RequestBody  ClientRequestDto requestDto) {
-        clientService.updateById(id, requestDto);
-        return ResponseEntity.ok().build();
+        ClientResponseDto responseDto = clientService.updateById(id, requestDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Удалить клиента")
