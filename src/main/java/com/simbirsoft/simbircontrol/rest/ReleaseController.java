@@ -2,18 +2,13 @@ package com.simbirsoft.simbircontrol.rest;
 
 import com.simbirsoft.simbircontrol.rest.dto.ReleaseRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ReleaseResponseDto;
+import com.simbirsoft.simbircontrol.service.ReleaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.io.IOException;
@@ -23,26 +18,34 @@ import java.io.IOException;
 @RequestMapping("/release")
 public class ReleaseController {
 
-    //@Operation(summary = "Получить список релизов")
-    //@Operation(summary = "Получить список релизов проекта")
-    //@Operation(summary = "Получить релизов задачи")
+    @Autowired
+    private ReleaseService releaseService;
 
+    @Operation(summary = "Получить релиз")
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ReleaseResponseDto> getRelease(@PathVariable Integer id) {
+        releaseService.getById(id);
+        return ResponseEntity.ok().build();
+    }
 
     @Operation(summary = "Создать релиз")
     @PostMapping(value = "/create")
     public ResponseEntity<ReleaseResponseDto> createRelease(@RequestBody ReleaseRequestDto requestDto) {
+        releaseService.create(requestDto);
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Изменить релиз")
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ReleaseResponseDto> updateRelease(@PathVariable Integer id, @RequestBody ReleaseRequestDto requestDto) {
+        releaseService.updateById(id, requestDto);
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Удалить релиз")
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity deleteRelease(@PathVariable Integer id) {
+        releaseService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

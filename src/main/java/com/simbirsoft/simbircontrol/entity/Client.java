@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import java.util.Collection;
 
 @Entity
 @Table(name = "client")
@@ -17,6 +19,9 @@ public class Client {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "client")
+    private Collection<Project> projects;
 
     public Client() {
     }

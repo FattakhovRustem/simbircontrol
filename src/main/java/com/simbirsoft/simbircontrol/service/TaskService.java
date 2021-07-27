@@ -1,7 +1,19 @@
 package com.simbirsoft.simbircontrol.service;
 
-import org.springframework.stereotype.Service;
+import com.simbirsoft.simbircontrol.rest.dto.TaskRequestDto;
+import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 
-@Service
-public class TaskService {
+import java.util.List;
+
+public interface TaskService {
+
+    List<TaskResponseDto> getAll();
+
+    TaskResponseDto getById(Integer id);
+
+    TaskResponseDto create(TaskRequestDto requestDto);
+
+    TaskResponseDto updateById(Integer id, TaskRequestDto requestDto);
+
+    void deleteById(Integer id);
 }

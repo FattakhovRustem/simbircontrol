@@ -1,7 +1,15 @@
 package com.simbirsoft.simbircontrol.service;
 
-import org.springframework.stereotype.Service;
+import com.simbirsoft.simbircontrol.rest.dto.ReleaseRequestDto;
+import com.simbirsoft.simbircontrol.rest.dto.ReleaseResponseDto;
 
-@Service
-public class ReleaseService {
+public interface ReleaseService {
+
+    ReleaseResponseDto getById(Integer id);
+
+    ReleaseResponseDto create(ReleaseRequestDto requestDto);
+
+    ReleaseResponseDto updateById(Integer id, ReleaseRequestDto requestDto);
+
+    void deleteById(Integer id);
 }

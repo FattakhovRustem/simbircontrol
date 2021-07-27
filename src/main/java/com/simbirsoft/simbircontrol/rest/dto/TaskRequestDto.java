@@ -2,8 +2,6 @@ package com.simbirsoft.simbircontrol.rest.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.text.DecimalFormat;
-
 @Schema(description = "Задача")
 public class TaskRequestDto {
 
@@ -13,20 +11,20 @@ public class TaskRequestDto {
     @Schema(description = "Статус")
     private String state;
 
-    @Schema(description = "Релиз")
-    private ReleaseRequestDto release;
+    @Schema(description = "ID релиза")
+    private Integer releaseId;
 
-    @Schema(description = "Автор")
-    private UserRequestDto author;
+    @Schema(description = "ID автора")
+    private Integer idAuthor;
 
-    @Schema(description = "Исполнитель")
-    private UserRequestDto performer;
+    @Schema(description = "ID исполнителя")
+    private Integer idPerformer;
 
-    @Schema(description = "Название задачи")
+    @Schema(description = "Наименование задачи")
     private String name;
 
-    //@Schema(description = "ID проекта")
-    //private Integer projectId;
+    @Schema(description = "ID проекта")
+    private Integer projectId;
 
     @Schema(description = "Описание задачи")
     private String description;
@@ -34,13 +32,14 @@ public class TaskRequestDto {
     public TaskRequestDto() {
     }
 
-    public TaskRequestDto(Integer id, String state, ReleaseRequestDto release, UserRequestDto author, UserRequestDto performer, String name, String description) {
+    public TaskRequestDto(Integer id, String state, Integer releaseId, Integer idAuthor, Integer idPerformer, String name, Integer projectId, String description) {
         this.id = id;
         this.state = state;
-        this.release = release;
-        this.author = author;
-        this.performer = performer;
+        this.releaseId = releaseId;
+        this.idAuthor = idAuthor;
+        this.idPerformer = idPerformer;
         this.name = name;
+        this.projectId = projectId;
         this.description = description;
     }
 
@@ -60,28 +59,28 @@ public class TaskRequestDto {
         this.state = state;
     }
 
-    public ReleaseRequestDto getRelease() {
-        return release;
+    public Integer getReleaseId() {
+        return releaseId;
     }
 
-    public void setRelease(ReleaseRequestDto release) {
-        this.release = release;
+    public void setReleaseId(Integer releaseId) {
+        this.releaseId = releaseId;
     }
 
-    public UserRequestDto getAuthor() {
-        return author;
+    public Integer getIdAuthor() {
+        return idAuthor;
     }
 
-    public void setAuthor(UserRequestDto author) {
-        this.author = author;
+    public void setIdAuthor(Integer idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
-    public UserRequestDto getPerformer() {
-        return performer;
+    public Integer getIdPerformer() {
+        return idPerformer;
     }
 
-    public void setPerformer(UserRequestDto performer) {
-        this.performer = performer;
+    public void setIdPerformer(Integer idPerformer) {
+        this.idPerformer = idPerformer;
     }
 
     public String getName() {
@@ -90,6 +89,14 @@ public class TaskRequestDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
     public String getDescription() {

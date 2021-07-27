@@ -1,7 +1,19 @@
 package com.simbirsoft.simbircontrol.service;
 
-import org.springframework.stereotype.Service;
+import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
+import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 
-@Service
-public class ProjectService {
+import java.util.List;
+
+public interface ProjectService {
+
+    List<ProjectResponseDto> getAll();
+
+    ProjectResponseDto getById(Integer id);
+
+    ProjectResponseDto create(ProjectRequestDto requestDto);
+
+    ProjectResponseDto updateById(Integer id, ProjectRequestDto requestDto);
+
+    void deleteById(Integer id);
 }

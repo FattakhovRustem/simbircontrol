@@ -2,16 +2,14 @@ package com.simbirsoft.simbircontrol.rest.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.List;
-
 @Schema(description = "Проект")
 public class ProjectResponseDto {
 
     @Schema(description = "ID проекта")
     private Integer id;
 
-    @Schema(description = "Руководитель проекта")
-    private UserResponseDto leader;
+    @Schema(description = "ID руководителя проекта")
+    private Integer userIdLeader;
 
     @Schema(description = "Статус")
     private String state;
@@ -19,30 +17,22 @@ public class ProjectResponseDto {
     @Schema(description = "Наименование проекта")
     private String name;
 
-    @Schema(description = "Наименование клиента")
-    private String clientName;
+    @Schema(description = "ID клиента")
+    private Integer clientId;
 
     @Schema(description = "Описание проекта")
     private String description;
 
-    @Schema(description = "Задачи проекта")
-    private List<TaskResponseDto> tasks;
-
-    @Schema(description = "Релизы проекта")
-    private List<ReleaseResponseDto> releases;
-
     public ProjectResponseDto() {
     }
 
-    public ProjectResponseDto(Integer id, UserResponseDto leader, String state, String name, String clientName, String description, List<TaskResponseDto> tasks, List<ReleaseResponseDto> releases) {
+    public ProjectResponseDto(Integer id, Integer userIdLeader, String state, String name, Integer clientId, String description) {
         this.id = id;
-        this.leader = leader;
+        this.userIdLeader = userIdLeader;
         this.state = state;
         this.name = name;
-        this.clientName = clientName;
+        this.clientId = clientId;
         this.description = description;
-        this.tasks = tasks;
-        this.releases = releases;
     }
 
     public Integer getId() {
@@ -53,12 +43,12 @@ public class ProjectResponseDto {
         this.id = id;
     }
 
-    public UserResponseDto getLeader() {
-        return leader;
+    public Integer getUserIdLeader() {
+        return userIdLeader;
     }
 
-    public void setLeader(UserResponseDto leader) {
-        this.leader = leader;
+    public void setUserIdLeader(Integer userIdLeader) {
+        this.userIdLeader = userIdLeader;
     }
 
     public String getState() {
@@ -77,12 +67,12 @@ public class ProjectResponseDto {
         this.name = name;
     }
 
-    public String getClientName() {
-        return clientName;
+    public Integer getClientId() {
+        return clientId;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public String getDescription() {
@@ -91,21 +81,5 @@ public class ProjectResponseDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<TaskResponseDto> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<TaskResponseDto> tasks) {
-        this.tasks = tasks;
-    }
-
-    public List<ReleaseResponseDto> getReleases() {
-        return releases;
-    }
-
-    public void setReleases(List<ReleaseResponseDto> releases) {
-        this.releases = releases;
     }
 }

@@ -11,20 +11,20 @@ public class TaskResponseDto {
     @Schema(description = "Статус")
     private String state;
 
-    @Schema(description = "Релиз")
-    private ReleaseResponseDto release;
+    @Schema(description = "ID релиза")
+    private Integer releaseId;
 
-    @Schema(description = "Автор")
-    private UserResponseDto author;
+    @Schema(description = "ID автора")
+    private Integer idAuthor;
 
-    @Schema(description = "Исполнитель")
-    private UserResponseDto performer;
+    @Schema(description = "ID исполнителя")
+    private Integer idPerformer;
 
-    @Schema(description = "Название задачи")
+    @Schema(description = "Наименование задачи")
     private String name;
 
-    //@Schema(description = "ID проекта")
-    //private Integer projectId;
+    @Schema(description = "ID проекта")
+    private Integer projectId;
 
     @Schema(description = "Описание задачи")
     private String description;
@@ -32,13 +32,14 @@ public class TaskResponseDto {
     public TaskResponseDto() {
     }
 
-    public TaskResponseDto(Integer id, String state, ReleaseResponseDto release, UserResponseDto author, UserResponseDto performer, String name, String description) {
+    public TaskResponseDto(Integer id, String state, Integer releaseId, Integer idAuthor, Integer idPerformer, String name, Integer projectId, String description) {
         this.id = id;
         this.state = state;
-        this.release = release;
-        this.author = author;
-        this.performer = performer;
+        this.releaseId = releaseId;
+        this.idAuthor = idAuthor;
+        this.idPerformer = idPerformer;
         this.name = name;
+        this.projectId = projectId;
         this.description = description;
     }
 
@@ -58,28 +59,28 @@ public class TaskResponseDto {
         this.state = state;
     }
 
-    public ReleaseResponseDto getRelease() {
-        return release;
+    public Integer getReleaseId() {
+        return releaseId;
     }
 
-    public void setRelease(ReleaseResponseDto release) {
-        this.release = release;
+    public void setReleaseId(Integer releaseId) {
+        this.releaseId = releaseId;
     }
 
-    public UserResponseDto getAuthor() {
-        return author;
+    public Integer getIdAuthor() {
+        return idAuthor;
     }
 
-    public void setAuthor(UserResponseDto author) {
-        this.author = author;
+    public void setIdAuthor(Integer idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
-    public UserResponseDto getPerformer() {
-        return performer;
+    public Integer getIdPerformer() {
+        return idPerformer;
     }
 
-    public void setPerformer(UserResponseDto performer) {
-        this.performer = performer;
+    public void setIdPerformer(Integer idPerformer) {
+        this.idPerformer = idPerformer;
     }
 
     public String getName() {
@@ -88,6 +89,14 @@ public class TaskResponseDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
     public String getDescription() {

@@ -2,7 +2,7 @@ package com.simbirsoft.simbircontrol.rest.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Schema(description = "Релиз")
 public class ReleaseRequestDto {
@@ -10,23 +10,24 @@ public class ReleaseRequestDto {
     @Schema(description = "ID релиза")
     private Integer id;
 
-    //@Schema(description = "ID проекта")
-    //private Integer projectId;
+    @Schema(description = "ID проекта")
+    private Integer projectId;
 
     @Schema(description = "Версия релиза")
     private String version;
 
     @Schema(description = "Дата начала релиза")
-    private Date dateStart;
+    private LocalDateTime dateStart;
 
     @Schema(description = "Дата конца релиза")
-    private Date dateEnd;
+    private LocalDateTime dateEnd;
 
     public ReleaseRequestDto() {
     }
 
-    public ReleaseRequestDto(Integer id, String version, Date dateStart, Date dateEnd) {
+    public ReleaseRequestDto(Integer id, Integer projectId, String version, LocalDateTime dateStart, LocalDateTime dateEnd) {
         this.id = id;
+        this.projectId = projectId;
         this.version = version;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -40,6 +41,14 @@ public class ReleaseRequestDto {
         this.id = id;
     }
 
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
     public String getVersion() {
         return version;
     }
@@ -48,19 +57,19 @@ public class ReleaseRequestDto {
         this.version = version;
     }
 
-    public Date getDateStart() {
+    public LocalDateTime getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
+    public void setDateStart(LocalDateTime dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Date getDateEnd() {
+    public LocalDateTime getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Date dateEnd) {
+    public void setDateEnd(LocalDateTime dateEnd) {
         this.dateEnd = dateEnd;
     }
 }
