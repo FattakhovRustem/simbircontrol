@@ -4,10 +4,12 @@ import com.simbirsoft.simbircontrol.entity.Project;
 import com.simbirsoft.simbircontrol.entity.Release;
 import com.simbirsoft.simbircontrol.rest.dto.ReleaseRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ReleaseResponseDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReleaseConverter {
 
-    public static Release fromReleaseRequestDtoToRelease(ReleaseRequestDto requestDto) {
+    public Release fromReleaseRequestDtoToRelease(ReleaseRequestDto requestDto) {
         Release release = new Release();
         release.setDateEnd(requestDto.getDateEnd());
         release.setDateStart(requestDto.getDateStart());
@@ -15,12 +17,12 @@ public class ReleaseConverter {
         release.setId(requestDto.getId());
 
         Project project = new Project();
-        project.setId(requestDto.getId());
+        project.setId(requestDto.getProjectId());
         release.setProjectRelease(project);
         return release;
     }
 
-    public static ReleaseResponseDto fromReleaseToReleaseResponseDto(Release release) {
+    public ReleaseResponseDto fromReleaseToReleaseResponseDto(Release release) {
         ReleaseResponseDto responseDto = new ReleaseResponseDto();
         responseDto.setDateEnd(release.getDateEnd());
         responseDto.setDateStart(release.getDateStart());

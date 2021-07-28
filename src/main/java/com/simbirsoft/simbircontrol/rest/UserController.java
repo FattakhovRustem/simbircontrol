@@ -5,7 +5,6 @@ import com.simbirsoft.simbircontrol.rest.dto.UserResponseDto;
 import com.simbirsoft.simbircontrol.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +25,11 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @Operation(summary = "Получить список пользователей")
     @GetMapping(value = "/all")
@@ -52,8 +54,8 @@ public class UserController {
 
     @Operation(summary = "Изменить пользователя")
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Integer id, @RequestBody UserRequestDto requestDto) {
-        UserResponseDto responseDto = userService.updateById(id, requestDto);
+    public ResponseEntity<UserResponseDto> updateUser(@RequestBody UserRequestDto requestDto) {
+        UserResponseDto responseDto = userService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 

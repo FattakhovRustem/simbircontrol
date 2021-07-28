@@ -5,7 +5,6 @@ import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 import com.simbirsoft.simbircontrol.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +25,11 @@ import java.util.List;
 @RequestMapping("/task")
 public class TaskController {
 
-    @Autowired
-    private TaskService taskService;
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @Operation(summary = "Получить список задач")
     @GetMapping(value = "/all")
@@ -51,9 +53,9 @@ public class TaskController {
     }
 
     @Operation(summary = "Изменить задачу")
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<TaskResponseDto> updateTask(@PathVariable Integer id, @RequestBody TaskRequestDto requestDto) {
-        TaskResponseDto responseDto = taskService.updateById(id, requestDto);
+    @PutMapping(value = "/update")
+    public ResponseEntity<TaskResponseDto> updateTask(@RequestBody TaskRequestDto requestDto) {
+        TaskResponseDto responseDto = taskService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 

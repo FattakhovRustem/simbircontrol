@@ -3,17 +3,19 @@ package com.simbirsoft.simbircontrol.service.converter;
 import com.simbirsoft.simbircontrol.entity.Client;
 import com.simbirsoft.simbircontrol.rest.dto.ClientRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ClientResponseDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ClientConverter {
 
-    public static Client fromClientRequestDtoToClient(ClientRequestDto requestDto) {
+    public Client fromClientRequestDtoToClient(ClientRequestDto requestDto) {
         Client client = new Client();
         client.setId(requestDto.getId());
         client.setName(requestDto.getName());
         return client;
     }
 
-    public static ClientResponseDto fromClientToClientResponseDto(Client client) {
+    public ClientResponseDto fromClientToClientResponseDto(Client client) {
         ClientResponseDto responseDto = new ClientResponseDto();
         responseDto.setId(client.getId());
         responseDto.setName(client.getName());

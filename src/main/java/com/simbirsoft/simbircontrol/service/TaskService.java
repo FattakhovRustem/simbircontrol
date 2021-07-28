@@ -13,7 +13,7 @@ public interface TaskService {
 
     TaskResponseDto create(TaskRequestDto requestDto);
 
-    TaskResponseDto updateById(Integer id, TaskRequestDto requestDto);
+    TaskResponseDto update(TaskRequestDto requestDto);
 
     void deleteById(Integer id);
 }

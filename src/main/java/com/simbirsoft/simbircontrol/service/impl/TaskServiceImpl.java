@@ -1,42 +1,56 @@
 package com.simbirsoft.simbircontrol.service.impl;
 
+import com.simbirsoft.simbircontrol.entity.Task;
 import com.simbirsoft.simbircontrol.repository.TaskRepository;
 import com.simbirsoft.simbircontrol.rest.dto.TaskRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 import com.simbirsoft.simbircontrol.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.simbirsoft.simbircontrol.service.converter.TaskConverter;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService {
 
-    @Autowired
     private TaskRepository taskRepository;
+    private TaskConverter taskConverter;
+
+    public TaskServiceImpl(TaskRepository taskRepository, TaskConverter taskConverter) {
+        this.taskRepository = taskRepository;
+        this.taskConverter = taskConverter;
+    }
 
     @Override
     public List<TaskResponseDto> getAll() {
-        return null;
+        List<TaskResponseDto> result = new ArrayList<>();
+        List<Task> tasks = taskRepository.findAll();
+        for (Task task : tasks) {
+            result.add(taskConverter.fromTaskToTaskResponseDto(task));
+        }
+        return result;
     }
 
     @Override
     public TaskResponseDto getById(Integer id) {
-        return null;
+        return taskConverter.fromTaskToTaskResponseDto(taskRepository.getById(id));
     }
 
     @Override
     public TaskResponseDto create(TaskRequestDto requestDto) {
-        return null;
+        Task task = taskRepository.save(taskConverter.fromTaskRequestDtoToTask(requestDto));
+        return taskConverter.fromTaskToTaskResponseDto(task);
     }
 
     @Override
-    public TaskResponseDto updateById(Integer id, TaskRequestDto requestDto) {
-        return null;
+    public TaskResponseDto update(TaskRequestDto requestDto) {
+        Task task = taskRepository.save(taskConverter.fromTaskRequestDtoToTask(requestDto));
+        return taskConverter.fromTaskToTaskResponseDto(task);
     }
 
     @Override
     public void deleteById(Integer id) {
-
+        taskRepository.deleteById(id);
     }
 }

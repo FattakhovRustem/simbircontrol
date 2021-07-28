@@ -1,12 +1,10 @@
 package com.simbirsoft.simbircontrol.rest;
 
-import com.simbirsoft.simbircontrol.entity.Project;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import com.simbirsoft.simbircontrol.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +25,11 @@ import java.util.List;
 @RequestMapping("/project")
 public class ProjectController {
 
-    @Autowired
-    private ProjectService projectService;
+    private final ProjectService projectService;
+
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
 
     @Operation(summary = "Получить список проектов")
     @GetMapping(value = "/all")
@@ -52,9 +53,9 @@ public class ProjectController {
     }
 
     @Operation(summary = "Изменить проект")
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ProjectResponseDto> updateProject(@PathVariable Integer id, @RequestBody ProjectRequestDto requestDto) {
-        ProjectResponseDto responseDto = projectService.updateById(id, requestDto);
+    @PutMapping(value = "/update")
+    public ResponseEntity<ProjectResponseDto> updateProject(@RequestBody ProjectRequestDto requestDto) {
+        ProjectResponseDto responseDto = projectService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 

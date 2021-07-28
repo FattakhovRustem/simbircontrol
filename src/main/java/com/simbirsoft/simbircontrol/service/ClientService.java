@@ -13,7 +13,7 @@ public interface ClientService {
 
     ClientResponseDto create(ClientRequestDto requestDto);
 
-    ClientResponseDto updateById(Integer id, ClientRequestDto requestDto);
+    ClientResponseDto update(ClientRequestDto requestDto);
 
     void deleteById(Integer id);
 }

@@ -5,21 +5,30 @@ import com.simbirsoft.simbircontrol.rest.dto.ReleaseResponseDto;
 import com.simbirsoft.simbircontrol.service.ReleaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.io.IOException;
+import java.util.List;
 
 @Tag(name = "Управление релизами")
 @RestController
 @RequestMapping("/release")
 public class ReleaseController {
 
-    @Autowired
-    private ReleaseService releaseService;
+    private final ReleaseService releaseService;
+
+    public ReleaseController(ReleaseService releaseService) {
+        this.releaseService = releaseService;
+    }
+
+    @Operation(summary = "Получить релиза проекта")
+    @GetMapping(value = "/all/{projectId}")
+    public ResponseEntity<List<ReleaseResponseDto>> getReleasesProject(@PathVariable Integer projectId) {
+        return ResponseEntity.ok().body(releaseService.getReleasesProject(projectId));
+    }
 
     @Operation(summary = "Получить релиз")
     @GetMapping(value = "/{id}")
@@ -36,9 +45,9 @@ public class ReleaseController {
     }
 
     @Operation(summary = "Изменить релиз")
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ReleaseResponseDto> updateRelease(@PathVariable Integer id, @RequestBody ReleaseRequestDto requestDto) {
-        ReleaseResponseDto responseDto = releaseService.updateById(id, requestDto);
+    @PutMapping(value = "/update")
+    public ResponseEntity<ReleaseResponseDto> updateRelease(@RequestBody ReleaseRequestDto requestDto) {
+        ReleaseResponseDto responseDto = releaseService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 

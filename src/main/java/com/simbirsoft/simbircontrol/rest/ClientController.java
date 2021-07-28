@@ -2,12 +2,9 @@ package com.simbirsoft.simbircontrol.rest;
 
 import com.simbirsoft.simbircontrol.rest.dto.ClientRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ClientResponseDto;
-import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
-import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import com.simbirsoft.simbircontrol.service.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +25,11 @@ import java.util.List;
 @RequestMapping("/client")
 public class ClientController {
 
-    @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
+
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @Operation(summary = "Получить список клиентов")
     @GetMapping(value = "/all")
@@ -53,9 +53,9 @@ public class ClientController {
     }
 
     @Operation(summary = "Изменить клиента")
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ClientResponseDto> updateClient(@PathVariable Integer id, @RequestBody  ClientRequestDto requestDto) {
-        ClientResponseDto responseDto = clientService.updateById(id, requestDto);
+    @PutMapping(value = "/update")
+    public ResponseEntity<ClientResponseDto> updateClient(@RequestBody  ClientRequestDto requestDto) {
+        ClientResponseDto responseDto = clientService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 

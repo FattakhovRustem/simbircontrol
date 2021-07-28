@@ -7,7 +7,7 @@ databaseChangeLog:
         - createTable:
             tableName: users
             columns:
-              - column: {name: id, type: INT, autoIncrement: true, constraints: {nullable: false, primaryKey: true, primaryKeyName:users_pkey} }
+              - column: {name: id, type: INT, autoIncrement: true, constraints: {nullable: false, primaryKey: true, primaryKeyName: users_pkey} }
               - column: {name: role, type: VARCHAR(100)}
               - column: {name: surname, type: VARCHAR(100)}
               - column: {name: name, type: VARCHAR(100)}
@@ -21,7 +21,7 @@ databaseChangeLog:
         - createTable:
             tableName: client
             columns:
-              - column: {name: id, type: INT, constraints: {nullable: false, primaryKey: true, primaryKeyName:client_pkey}}
+              - column: {name: id, type: INT, autoIncrement: true, constraints: {nullable: false, primaryKey: true, primaryKeyName: client_pkey}}
               - column: {name: name, type: VARCHAR(100)}
 
   - changeSet:
@@ -31,7 +31,7 @@ databaseChangeLog:
         - createTable:
             tableName: project
             columns:
-              - column: {name: id, type: INT, constraints: {nullable: false, primaryKey: true, primaryKeyName:project_pkey}}
+              - column: {name: id, type: INT, autoIncrement: true, constraints: {nullable: false, primaryKey: true, primaryKeyName: project_pkey}}
               - column: {name: user_id_leader, type: INT, constraints: { nullable: false, foreignKeyName: project_users_fkey, references: users(id)}}
               - column: {name: state, type: VARCHAR(100)}
               - column: {name: name, type: VARCHAR(100)}
@@ -45,7 +45,7 @@ databaseChangeLog:
         - createTable:
             tableName: release
             columns:
-              - column: {name: id, type: INT, constraints: {nullable: false, primaryKey: true, primaryKeyName:release_pkey}}
+              - column: {name: id, type: INT, autoIncrement: true, constraints: {nullable: false, primaryKey: true, primaryKeyName: release_pkey}}
               - column: {name: project_id, type: INT, constraints: { nullable: false, foreignKeyName: release_project_fkey, references: project(id)}}
               - column: {name: version, type: VARCHAR(100)}
               - column: {name: date_start, type: TIMESTAMP WITH TIME ZONE, defaultValueComputed: now()}
@@ -58,7 +58,7 @@ databaseChangeLog:
         - createTable:
             tableName: task
             columns:
-              - column: {name: id, type: INT, constraints: {nullable: false, primaryKey: true, primaryKeyName:task_pkey}}
+              - column: {name: id, type: INT, autoIncrement: true, constraints: {nullable: false, primaryKey: true, primaryKeyName: task_pkey}}
               - column: {name: state, type: VARCHAR(100)}
               - column: {name: release_id, type: INT, constraints: { nullable: false, foreignKeyName: task_release_fkey, references: release(id)}}
               - column: {name: user_id_author, type: INT, constraints: { nullable: false, foreignKeyName: task_users_author_fkey, references: users(id)}}

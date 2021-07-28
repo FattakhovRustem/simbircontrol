@@ -5,10 +5,12 @@ import com.simbirsoft.simbircontrol.entity.Project;
 import com.simbirsoft.simbircontrol.entity.User;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProjectConverter {
 
-    public static Project fromProjectRequestDtoToProject(ProjectRequestDto requestDto) {
+    public Project fromProjectRequestDtoToProject(ProjectRequestDto requestDto) {
         Project project = new Project();
         project.setId(requestDto.getId());
         project.setState(requestDto.getState());
@@ -25,7 +27,7 @@ public class ProjectConverter {
         return project;
     }
 
-    public static ProjectResponseDto fromProjectToProjectResponseDto(Project project) {
+    public ProjectResponseDto fromProjectToProjectResponseDto(Project project) {
         ProjectResponseDto responseDto = new ProjectResponseDto();
         responseDto.setUserIdLeader(project.getUserLeader().getId());
         responseDto.setState(project.getState());
