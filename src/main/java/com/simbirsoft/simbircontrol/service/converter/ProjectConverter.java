@@ -1,8 +1,6 @@
 package com.simbirsoft.simbircontrol.service.converter;
 
-import com.simbirsoft.simbircontrol.entity.Client;
 import com.simbirsoft.simbircontrol.entity.Project;
-import com.simbirsoft.simbircontrol.entity.User;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import org.springframework.stereotype.Component;
@@ -16,14 +14,6 @@ public class ProjectConverter {
         project.setState(requestDto.getState());
         project.setName(requestDto.getName());
         project.setDescription(requestDto.getDescription());
-
-        User user = new User();
-        user.setId(requestDto.getUserIdLeader());
-        project.setUserLeader(user);
-
-        Client client = new Client();
-        client.setId(requestDto.getClientId());
-        project.setClient(client);
         return project;
     }
 

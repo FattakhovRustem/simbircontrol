@@ -15,10 +15,6 @@ public class ReleaseConverter {
         release.setDateStart(requestDto.getDateStart());
         release.setVersion(requestDto.getVersion());
         release.setId(requestDto.getId());
-
-        Project project = new Project();
-        project.setId(requestDto.getProjectId());
-        release.setProjectRelease(project);
         return release;
     }
 
@@ -28,7 +24,6 @@ public class ReleaseConverter {
         responseDto.setDateStart(release.getDateStart());
         responseDto.setId(release.getId());
         responseDto.setVersion(release.getVersion());
-
         responseDto.setProjectId(release.getProjectRelease().getId());
         return responseDto;
     }

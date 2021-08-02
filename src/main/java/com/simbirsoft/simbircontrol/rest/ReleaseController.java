@@ -24,7 +24,7 @@ public class ReleaseController {
         this.releaseService = releaseService;
     }
 
-    @Operation(summary = "Получить релиза проекта")
+    @Operation(summary = "Получить релиз проекта")
     @GetMapping(value = "/all/{projectId}")
     public ResponseEntity<List<ReleaseResponseDto>> getReleasesProject(@PathVariable Integer projectId) {
         return ResponseEntity.ok().body(releaseService.getReleasesProject(projectId));

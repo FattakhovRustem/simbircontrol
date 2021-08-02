@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -39,15 +39,15 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "projectRelease")
-    private Collection<Release> releases;
+    private List<Release> releases;
 
     @OneToMany(mappedBy = "projectTask")
-    private Collection<Task> tasks;
+    private List<Task> tasks;
 
     public Project() {
     }
 
-    public Project(Integer id, User userLeader, String state, String name, Client client, String description, Collection<Release> releases, Collection<Task> tasks) {
+    public Project(Integer id, User userLeader, String state, String name, Client client, String description, List<Release> releases, List<Task> tasks) {
         this.id = id;
         this.userLeader = userLeader;
         this.state = state;
@@ -106,19 +106,19 @@ public class Project {
         this.description = description;
     }
 
-    public Collection<Release> getReleases() {
+    public List<Release> getReleases() {
         return releases;
     }
 
-    public void setReleases(Collection<Release> releases) {
+    public void setReleases(List<Release> releases) {
         this.releases = releases;
     }
 
-    public Collection<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Collection<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }

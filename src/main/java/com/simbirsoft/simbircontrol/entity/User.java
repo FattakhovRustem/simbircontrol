@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -33,19 +33,19 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "userLeader")
-    private Collection<Project> projectsLeader;
+    private List<Project> projectsLeader;
 
     @OneToMany(mappedBy = "userAuthor")
-    private Collection<Task> tasksAuthor;
+    private List<Task> tasksAuthor;
 
     @OneToMany(mappedBy = "userPerformer")
-    private Collection<Task> tasksPerformer;
+    private List<Task> tasksPerformer;
 
 
     public User() {
     }
 
-    public User(Integer id, String role, String surname, String name, String login, String password, Collection<Project> projectsLeader, Collection<Task> tasksAuthor, Collection<Task> tasksPerformer) {
+    public User(Integer id, String role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
         this.id = id;
         this.role = role;
         this.surname = surname;
@@ -105,27 +105,27 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Project> getProjectsLeader() {
+    public List<Project> getProjectsLeader() {
         return projectsLeader;
     }
 
-    public void setProjectsLeader(Collection<Project> projectsLeader) {
+    public void setProjectsLeader(List<Project> projectsLeader) {
         this.projectsLeader = projectsLeader;
     }
 
-    public Collection<Task> getTasksAuthor() {
+    public List<Task> getTasksAuthor() {
         return tasksAuthor;
     }
 
-    public void setTasksAuthor(Collection<Task> tasksAuthor) {
+    public void setTasksAuthor(List<Task> tasksAuthor) {
         this.tasksAuthor = tasksAuthor;
     }
 
-    public Collection<Task> getTasksPerformer() {
+    public List<Task> getTasksPerformer() {
         return tasksPerformer;
     }
 
-    public void setTasksPerformer(Collection<Task> tasksPerformer) {
+    public void setTasksPerformer(List<Task> tasksPerformer) {
         this.tasksPerformer = tasksPerformer;
     }
 }

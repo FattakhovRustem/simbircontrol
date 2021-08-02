@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -21,7 +21,7 @@ public class Client {
     private String name;
 
     @OneToMany(mappedBy = "client")
-    private Collection<Project> projects;
+    private List<Project> projects;
 
     public Client() {
     }

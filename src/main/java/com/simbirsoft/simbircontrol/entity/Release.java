@@ -12,7 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "release")
@@ -36,12 +36,12 @@ public class Release {
     private LocalDateTime dateEnd;
 
     @OneToMany(mappedBy = "release")
-    private Collection<Task> tasks;
+    private List<Task> tasks;
 
     public Release() {
     }
 
-    public Release(Integer id, Project projectRelease, String version, LocalDateTime dateStart, LocalDateTime dateEnd, Collection<Task> tasks) {
+    public Release(Integer id, Project projectRelease, String version, LocalDateTime dateStart, LocalDateTime dateEnd, List<Task> tasks) {
         this.id = id;
         this.projectRelease = projectRelease;
         this.version = version;
@@ -90,11 +90,11 @@ public class Release {
         this.dateEnd = dateEnd;
     }
 
-    public Collection<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Collection<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }
