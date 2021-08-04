@@ -1,12 +1,8 @@
 package com.simbirsoft.simbircontrol.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+import com.simbirsoft.simbircontrol.enums.Role;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -17,8 +13,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     @Column(name = "surname")
     private String surname;
@@ -45,7 +42,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
+    public User(Integer id, Role role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
         this.id = id;
         this.role = role;
         this.surname = surname;
@@ -65,11 +62,11 @@ public class User {
         this.id = id;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

@@ -16,7 +16,6 @@ import com.simbirsoft.simbircontrol.service.converter.TaskConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,7 +70,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public TaskResponseDto update(TaskRequestDto requestDto) {
-        userRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Task not found"));
+        taskRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Task not found"));
         Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project not found"));
         Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> new NoEntityException("Release not found"));
         User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> new NoEntityException("User-Author not found"));

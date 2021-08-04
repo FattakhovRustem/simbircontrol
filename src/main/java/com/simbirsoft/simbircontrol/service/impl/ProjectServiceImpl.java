@@ -2,10 +2,14 @@ package com.simbirsoft.simbircontrol.service.impl;
 
 import com.simbirsoft.simbircontrol.entity.Client;
 import com.simbirsoft.simbircontrol.entity.Project;
+import com.simbirsoft.simbircontrol.entity.Task;
 import com.simbirsoft.simbircontrol.entity.User;
+import com.simbirsoft.simbircontrol.enums.State;
 import com.simbirsoft.simbircontrol.exception.NoEntityException;
+import com.simbirsoft.simbircontrol.exception.UnfinishedTaskException;
 import com.simbirsoft.simbircontrol.repository.ClientRepository;
 import com.simbirsoft.simbircontrol.repository.ProjectRepository;
+import com.simbirsoft.simbircontrol.repository.TaskRepository;
 import com.simbirsoft.simbircontrol.repository.UserRepository;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
@@ -26,12 +30,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     private final UserRepository userRepository;
     private final ClientRepository clientRepository;
+    private final TaskRepository taskRepository;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository, ProjectConverter projectConverter, UserRepository userRepository, ClientRepository clientRepository) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, ProjectConverter projectConverter, UserRepository userRepository, ClientRepository clientRepository, TaskRepository taskRepository) {
         this.projectRepository = projectRepository;
         this.projectConverter = projectConverter;
         this.userRepository = userRepository;
         this.clientRepository = clientRepository;
+        this.taskRepository = taskRepository;
     }
 
     @Transactional
@@ -51,18 +57,31 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public ProjectResponseDto create(ProjectRequestDto requestDto) {
-        Project project = projectRepository.save(projectConverter.fromProjectRequestDtoToProject(requestDto));
-        return projectConverter.fromProjectToProjectResponseDto(project);
+        User user = userRepository.findById(requestDto.getUserIdLeader()).orElseThrow(() -> new NoEntityException("User not found"));
+        Client client = clientRepository.findById(requestDto.getClientId()).orElseThrow(() -> new NoEntityException("Client not found"));
+        Project project = projectConverter.fromProjectRequestDtoToProject(requestDto);
+        project.setClient(client);
+        project.setUserLeader(user);
+        return projectConverter.fromProjectToProjectResponseDto(projectRepository.save(project));
     }
 
     @Transactional
     @Override
     public ProjectResponseDto update(ProjectRequestDto requestDto) {
-        projectRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Project not found"));
+        Project project = projectRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Project not found"));
         User user = userRepository.findById(requestDto.getUserIdLeader()).orElseThrow(() -> new NoEntityException("User not found"));
         Client client = clientRepository.findById(requestDto.getClientId()).orElseThrow(() -> new NoEntityException("Client not found"));
 
-        Project project = projectConverter.fromProjectRequestDtoToProject(requestDto);
+
+
+        if (requestDto.getState().name().equalsIgnoreCase(State.DONE.name())) {
+            List<Task> list = taskRepository.findUnfinishedTasksByProject(project);
+            if (list.size() > 0) {
+                throw new UnfinishedTaskException("Tasks not finished");
+            }
+        }
+
+        project = projectConverter.fromProjectRequestDtoToProject(requestDto);
         project.setUserLeader(user);
         project.setClient(client);
 

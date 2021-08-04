@@ -1,5 +1,6 @@
 package com.simbirsoft.simbircontrol.rest.dto;
 
+import com.simbirsoft.simbircontrol.enums.State;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Задача")
@@ -9,7 +10,7 @@ public class TaskResponseDto {
     private Integer id;
 
     @Schema(description = "Статус")
-    private String state;
+    private State state;
 
     @Schema(description = "ID релиза")
     private Integer releaseId;
@@ -32,7 +33,7 @@ public class TaskResponseDto {
     public TaskResponseDto() {
     }
 
-    public TaskResponseDto(Integer id, String state, Integer releaseId, Integer idAuthor, Integer idPerformer, String name, Integer projectId, String description) {
+    public TaskResponseDto(Integer id, State state, Integer releaseId, Integer idAuthor, Integer idPerformer, String name, Integer projectId, String description) {
         this.id = id;
         this.state = state;
         this.releaseId = releaseId;
@@ -51,11 +52,11 @@ public class TaskResponseDto {
         this.id = id;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 

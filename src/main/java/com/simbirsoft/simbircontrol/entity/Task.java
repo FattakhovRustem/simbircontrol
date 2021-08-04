@@ -1,14 +1,8 @@
 package com.simbirsoft.simbircontrol.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
+import com.simbirsoft.simbircontrol.enums.State;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -19,8 +13,9 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    private String state;
+    private State state;
 
     @Column(name = "description")
     private String description;
@@ -47,7 +42,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, String state, String description, Release release, User userAuthor, User userPerformer, String name, Project projectTask) {
+    public Task(Integer id, State state, String description, Release release, User userAuthor, User userPerformer, String name, Project projectTask) {
         this.id = id;
         this.state = state;
         this.description = description;
@@ -66,11 +61,11 @@ public class Task {
         this.id = id;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 

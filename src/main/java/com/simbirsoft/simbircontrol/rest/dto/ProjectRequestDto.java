@@ -1,5 +1,6 @@
 package com.simbirsoft.simbircontrol.rest.dto;
 
+import com.simbirsoft.simbircontrol.enums.State;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Проект")
@@ -12,7 +13,7 @@ public class ProjectRequestDto {
     private Integer userIdLeader;
 
     @Schema(description = "Статус")
-    private String state;
+    private State state;
 
     @Schema(description = "Наименование проекта")
     private String name;
@@ -26,7 +27,7 @@ public class ProjectRequestDto {
     public ProjectRequestDto() {
     }
 
-    public ProjectRequestDto(Integer id, Integer userIdLeader, String state, String name, Integer clientId, String description) {
+    public ProjectRequestDto(Integer id, Integer userIdLeader, State state, String name, Integer clientId, String description) {
         this.id = id;
         this.userIdLeader = userIdLeader;
         this.state = state;
@@ -51,11 +52,11 @@ public class ProjectRequestDto {
         this.userIdLeader = userIdLeader;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 

@@ -9,6 +9,8 @@ public interface ReleaseService {
 
     List<ReleaseResponseDto> getReleasesProject(Integer projectId);
 
+    Integer getUnfinishedTasksById(Integer id);
+
     ReleaseResponseDto getById(Integer id);
 
     ReleaseResponseDto create(ReleaseRequestDto requestDto);
