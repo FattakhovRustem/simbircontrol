@@ -8,6 +8,7 @@ import com.simbirsoft.simbircontrol.rest.dto.UserResponseDto;
 import com.simbirsoft.simbircontrol.service.UserService;
 import com.simbirsoft.simbircontrol.service.converter.UserConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,24 +24,28 @@ public class UserServiceImpl implements UserService {
         this.userConverter = userConverter;
     }
 
+    @Transactional
     @Override
     public List<UserResponseDto> getAll() {
         List<User> users = userRepository.findAll();
         return users.stream().map(userConverter::fromUserToUserResponseDto).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public UserResponseDto getById(Integer id) {
         User user = userRepository.findById(id).orElseThrow(() -> new NoEntityException("User not found"));
         return userConverter.fromUserToUserResponseDto(user);
     }
 
+    @Transactional
     @Override
     public UserResponseDto create(UserRequestDto requestDto) {
         User user = userRepository.save(userConverter.fromUserRequestDtoToUser(requestDto));
         return userConverter.fromUserToUserResponseDto(user);
     }
 
+    @Transactional
     @Override
     public UserResponseDto update(UserRequestDto requestDto) {
         userRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("User not found"));
@@ -48,6 +53,7 @@ public class UserServiceImpl implements UserService {
         return userConverter.fromUserToUserResponseDto(user);
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) {
         userRepository.findById(id).orElseThrow(() -> new NoEntityException("User not found"));

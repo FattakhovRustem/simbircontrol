@@ -14,6 +14,7 @@ import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 import com.simbirsoft.simbircontrol.service.TaskService;
 import com.simbirsoft.simbircontrol.service.converter.TaskConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +38,21 @@ public class TaskServiceImpl implements TaskService {
         this.releaseRepository = releaseRepository;
     }
 
+    @Transactional
     @Override
     public List<TaskResponseDto> getAll() {
         List<Task> tasks = taskRepository.findAll();
         return tasks.stream().map(taskConverter::fromTaskToTaskResponseDto).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public TaskResponseDto getById(Integer id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new NoEntityException("Task not found"));
         return taskConverter.fromTaskToTaskResponseDto(task);
     }
 
+    @Transactional
     @Override
     public TaskResponseDto create(TaskRequestDto requestDto) {
         Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project not found"));
@@ -64,6 +68,7 @@ public class TaskServiceImpl implements TaskService {
         return taskConverter.fromTaskToTaskResponseDto(taskRepository.save(task));
     }
 
+    @Transactional
     @Override
     public TaskResponseDto update(TaskRequestDto requestDto) {
         userRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Task not found"));
@@ -80,6 +85,7 @@ public class TaskServiceImpl implements TaskService {
         return taskConverter.fromTaskToTaskResponseDto(taskRepository.save(task));
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) {
         taskRepository.findById(id).orElseThrow(() -> new NoEntityException("Task not found"));

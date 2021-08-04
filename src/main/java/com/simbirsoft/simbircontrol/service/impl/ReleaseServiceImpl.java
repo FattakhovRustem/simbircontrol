@@ -10,6 +10,7 @@ import com.simbirsoft.simbircontrol.rest.dto.ReleaseResponseDto;
 import com.simbirsoft.simbircontrol.service.ReleaseService;
 import com.simbirsoft.simbircontrol.service.converter.ReleaseConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class ReleaseServiceImpl implements ReleaseService {
         this.projectRepository = projectRepository;
     }
 
+    @Transactional
     @Override
     public List<ReleaseResponseDto> getReleasesProject(Integer projectId) {
         Project project = projectRepository.findById(projectId).orElseThrow(() -> new NoEntityException("Project not found"));
@@ -37,12 +39,14 @@ public class ReleaseServiceImpl implements ReleaseService {
         return releases.stream().map(releaseConverter::fromReleaseToReleaseResponseDto).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public ReleaseResponseDto getById(Integer id) {
         releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release not found"));
         return releaseConverter.fromReleaseToReleaseResponseDto(releaseRepository.getById(id));
     }
 
+    @Transactional
     @Override
     public ReleaseResponseDto create(ReleaseRequestDto requestDto) {
         Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project not found"));
@@ -51,6 +55,7 @@ public class ReleaseServiceImpl implements ReleaseService {
         return releaseConverter.fromReleaseToReleaseResponseDto(releaseRepository.save(release));
     }
 
+    @Transactional
     @Override
     public ReleaseResponseDto update(ReleaseRequestDto requestDto) {
         releaseRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Release not found"));
@@ -60,6 +65,7 @@ public class ReleaseServiceImpl implements ReleaseService {
         return releaseConverter.fromReleaseToReleaseResponseDto(releaseRepository.save(release));
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) {
         releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release not found"));

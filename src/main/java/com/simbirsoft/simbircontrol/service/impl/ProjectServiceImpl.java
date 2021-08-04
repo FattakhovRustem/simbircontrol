@@ -12,6 +12,7 @@ import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import com.simbirsoft.simbircontrol.service.ProjectService;
 import com.simbirsoft.simbircontrol.service.converter.ProjectConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,24 +34,28 @@ public class ProjectServiceImpl implements ProjectService {
         this.clientRepository = clientRepository;
     }
 
+    @Transactional
     @Override
     public List<ProjectResponseDto> getAll() {
         List<Project> projects = projectRepository.findAll();
         return projects.stream().map(projectConverter::fromProjectToProjectResponseDto).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public ProjectResponseDto getById(Integer id) {
         Project project = projectRepository.findById(id).orElseThrow(() -> new NoEntityException("Project not found"));
         return projectConverter.fromProjectToProjectResponseDto(project);
     }
 
+    @Transactional
     @Override
     public ProjectResponseDto create(ProjectRequestDto requestDto) {
         Project project = projectRepository.save(projectConverter.fromProjectRequestDtoToProject(requestDto));
         return projectConverter.fromProjectToProjectResponseDto(project);
     }
 
+    @Transactional
     @Override
     public ProjectResponseDto update(ProjectRequestDto requestDto) {
         projectRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Project not found"));
@@ -64,6 +69,7 @@ public class ProjectServiceImpl implements ProjectService {
         return projectConverter.fromProjectToProjectResponseDto(projectRepository.save(project));
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) {
         projectRepository.findById(id).orElseThrow(() -> new NoEntityException("Project not found"));
