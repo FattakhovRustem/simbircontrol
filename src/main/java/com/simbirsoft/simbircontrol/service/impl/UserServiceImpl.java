@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserResponseDto getById(Integer id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new NoEntityException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new NoEntityException("User with ID = " + id + " not found"));
         return userConverter.fromUserToUserResponseDto(user);
     }
 
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserResponseDto update(UserRequestDto requestDto) {
-        userRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("User not found"));
+        userRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("User with ID = " + requestDto.getId() + " not found"));
         User user = userRepository.save(userConverter.fromUserRequestDtoToUser(requestDto));
         return userConverter.fromUserToUserResponseDto(user);
     }
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void deleteById(Integer id) {
-        userRepository.findById(id).orElseThrow(() -> new NoEntityException("User not found"));
+        userRepository.findById(id).orElseThrow(() -> new NoEntityException("User with ID = " + id + " not found"));
         userRepository.deleteById(id);
     }
 

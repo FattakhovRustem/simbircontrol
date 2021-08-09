@@ -1,7 +1,6 @@
 package com.simbirsoft.simbircontrol.repository;
 
 import com.simbirsoft.simbircontrol.entity.Project;
-import com.simbirsoft.simbircontrol.entity.Release;
 import com.simbirsoft.simbircontrol.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +16,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     @Query(value = "SELECT count(*) FROM task t WHERE t.release_id = :releaseId and t.state != 'DONE'", nativeQuery = true)
     Integer findUnfinishedTasksByReleaseId(@Param("releaseId") Integer releaseId);
+
+    List<Task> findByProjectTask(Project project);
 }

@@ -47,7 +47,7 @@ public class UserController {
 
     @Operation(summary = "Создать пользователя")
     @PostMapping(value = "/create")
-    public ResponseEntity<UserResponseDto> createTask(@RequestBody UserRequestDto requestDto) {
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto requestDto) {
         UserResponseDto responseDto = userService.create(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }

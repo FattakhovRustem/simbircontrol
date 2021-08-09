@@ -14,9 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ReleaseServiceImpl implements ReleaseService {
@@ -36,17 +33,8 @@ public class ReleaseServiceImpl implements ReleaseService {
 
     @Transactional
     @Override
-    public List<ReleaseResponseDto> getReleasesProject(Integer projectId) {
-        Project project = projectRepository.findById(projectId).orElseThrow(() -> new NoEntityException("Project not found"));
-
-        List<Release> releases = releaseRepository.findByProjectRelease(project);
-        return releases.stream().map(releaseConverter::fromReleaseToReleaseResponseDto).collect(Collectors.toList());
-    }
-
-    @Transactional
-    @Override
     public Integer getUnfinishedTasksById(Integer id) {
-        Release release = releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release not found"));
+        Release release = releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release with ID = " + id + " not found"));
         if (release.getDateEnd().compareTo(LocalDateTime.now()) >= 0) {
             return 0;
         }
@@ -55,14 +43,14 @@ public class ReleaseServiceImpl implements ReleaseService {
 
     @Override
     public ReleaseResponseDto getById(Integer id) {
-        releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release not found"));
+        releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release with ID = " + id + " not found"));
         return releaseConverter.fromReleaseToReleaseResponseDto(releaseRepository.getById(id));
     }
 
     @Transactional
     @Override
     public ReleaseResponseDto create(ReleaseRequestDto requestDto) {
-        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project not found"));
+        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project with ID = " + requestDto.getProjectId() + " not found"));
         Release release = releaseConverter.fromReleaseRequestDtoToRelease(requestDto);
         release.setProjectRelease(project);
         return releaseConverter.fromReleaseToReleaseResponseDto(releaseRepository.save(release));
@@ -71,8 +59,8 @@ public class ReleaseServiceImpl implements ReleaseService {
     @Transactional
     @Override
     public ReleaseResponseDto update(ReleaseRequestDto requestDto) {
-        releaseRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Release not found"));
-        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project not found"));
+        releaseRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Release with ID = " + requestDto.getId() + " not found"));
+        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project with ID = " + requestDto.getProjectId() + " not found"));
         Release release = releaseConverter.fromReleaseRequestDtoToRelease(requestDto);
         release.setProjectRelease(project);
         return releaseConverter.fromReleaseToReleaseResponseDto(releaseRepository.save(release));
@@ -81,7 +69,7 @@ public class ReleaseServiceImpl implements ReleaseService {
     @Transactional
     @Override
     public void deleteById(Integer id) {
-        releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release not found"));
+        releaseRepository.findById(id).orElseThrow(() -> new NoEntityException("Release with ID = " + id + " not found"));
         releaseRepository.deleteById(id);
     }
 }
