@@ -23,21 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c6e0865-a532-4580-ae27-68d2f18dae36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/enums/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/ReleaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/ReleaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/TaskRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ProjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ReleaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ReleaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +119,7 @@
       <workItem from="1628104457594" duration="4518000" />
       <workItem from="1628522596287" duration="16099000" />
       <workItem from="1628607052339" duration="17838000" />
-      <workItem from="1628694429306" duration="18611000" />
+      <workItem from="1628694429306" duration="19142000" />
     </task>
     <servers />
   </component>

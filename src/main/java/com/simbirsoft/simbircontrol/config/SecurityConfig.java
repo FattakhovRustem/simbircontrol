@@ -39,9 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //https://stackoverflow.com/questions/30819337/multiple-antmatchers-in-spring-security/30819556#30819556
                 .antMatchers(HttpMethod.GET, "/project/**").hasAnyAuthority(Role.ADMIN.name(), Role.LEADER.name(), Role.PERFORMER.name(), Role.AUTHOR.name())
-                .antMatchers(HttpMethod.PUT, "/project/**").hasAnyRole(Role.ADMIN.name(), Role.LEADER.name())
-                .antMatchers(HttpMethod.POST, "/project/**").hasAnyRole(Role.ADMIN.name(), Role.LEADER.name())
-                .antMatchers(HttpMethod.DELETE, "/project/**").hasAnyRole(Role.ADMIN.name(), Role.LEADER.name())
+                .antMatchers(HttpMethod.PUT, "/project/**").hasAnyAuthority(Role.ADMIN.name(), Role.LEADER.name())
+                .antMatchers(HttpMethod.POST, "/project/**").hasAnyAuthority(Role.ADMIN.name(), Role.LEADER.name())
+                .antMatchers(HttpMethod.DELETE, "/project/**").hasAnyAuthority(Role.ADMIN.name(), Role.LEADER.name())
                 //.antMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated()
