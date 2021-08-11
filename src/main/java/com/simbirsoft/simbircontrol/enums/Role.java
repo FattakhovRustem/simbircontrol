@@ -30,4 +30,5 @@ public enum Role {
             return Arrays.stream(Role.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException("Role not found"));
         }
     }
+
 }

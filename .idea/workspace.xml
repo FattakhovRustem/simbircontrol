@@ -23,17 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c6e0865-a532-4580-ae27-68d2f18dae36" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/ReleaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/ReleaseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/TaskRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/ReleaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/ReleaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ClientService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ProjectService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ReleaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/ReleaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ClientServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/TaskService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ProjectServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ReleaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ReleaseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +90,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SimbirControlApplication" />
@@ -113,7 +130,9 @@
       <workItem from="1628002734251" duration="15797000" />
       <workItem from="1628090068567" duration="8794000" />
       <workItem from="1628104457594" duration="4518000" />
-      <workItem from="1628522596287" duration="2809000" />
+      <workItem from="1628522596287" duration="16099000" />
+      <workItem from="1628607052339" duration="17838000" />
+      <workItem from="1628694429306" duration="18611000" />
     </task>
     <servers />
   </component>
@@ -137,10 +156,10 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="733" y="362" key="#com.intellij.fileTypes.FileTypeChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1628008424804" />
-    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1628524140431">
+    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1628707659846">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1628524140431" />
+    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1628707659846" />
     <state x="606" y="484" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1626779173760">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -149,30 +168,46 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="742" y="429" width="438" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.40.1920.1040@0.40.1920.1040" timestamp="1628523078452" />
-    <state x="401" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1627417743881">
+    <state x="0" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1628702311249">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="401" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1627417743881" />
-    <state x="690" y="307" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628104838979">
+    <state x="0" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1628702311249" />
+    <state x="690" y="307" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628710439627">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="690" y="307" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1628104838979" />
-    <state width="1877" height="374" key="GridCell.Tab.0.bottom" timestamp="1628110205278">
+    <state x="690" y="307" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1628710439627" />
+    <state width="1877" height="271" key="GridCell.Tab.0.bottom" timestamp="1628715111423">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="374" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1628110205278" />
-    <state width="1877" height="374" key="GridCell.Tab.0.center" timestamp="1628110205278">
+    <state width="1877" height="271" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
+    <state width="1877" height="271" key="GridCell.Tab.0.center" timestamp="1628715111423">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="374" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1628110205278" />
-    <state width="1877" height="374" key="GridCell.Tab.0.left" timestamp="1628110205277">
+    <state width="1877" height="271" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
+    <state width="1877" height="271" key="GridCell.Tab.0.left" timestamp="1628715111423">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="374" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1628110205277" />
-    <state width="1877" height="374" key="GridCell.Tab.0.right" timestamp="1628110205278">
+    <state width="1877" height="271" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
+    <state width="1877" height="271" key="GridCell.Tab.0.right" timestamp="1628715111423">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="374" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1628110205278" />
+    <state width="1877" height="271" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1628713401133">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1628713401133" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1628713401133">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.40.1920.1040@0.40.1920.1040" timestamp="1628713401133" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1628713401133">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.40.1920.1040@0.40.1920.1040" timestamp="1628713401133" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1628713401133">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.40.1920.1040@0.40.1920.1040" timestamp="1628713401133" />
     <state x="731" y="262" key="RollbackChangesDialog" timestamp="1627421844517">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -181,9 +216,17 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="461" y="205" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1627420682661" />
-    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup" timestamp="1626796562824">
+    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup" timestamp="1628706612651">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1626796562824" />
+    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1628706612651" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((User)userDetails).username" custom="org.springframework.security.core.userdetails.User" />
+        <watch expression="((User)userDetails).username" custom="org.springframework.security.core.userdetails.User" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

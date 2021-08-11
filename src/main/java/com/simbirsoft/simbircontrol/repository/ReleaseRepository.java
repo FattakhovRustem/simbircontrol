@@ -10,5 +10,10 @@ import java.util.List;
 @Repository
 public interface ReleaseRepository extends JpaRepository<Release, Integer> {
 
+    /**
+     * find all releases said project
+     * @param project project
+     * @return list releases
+     */
     List<Release> findByProjectRelease(Project project);
 }
