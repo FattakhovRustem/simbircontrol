@@ -11,12 +11,16 @@ public class ClientRequestDto {
     @Schema(description = "Наименование клиента")
     private String name;
 
+    @Schema(description = "Лицевой счет клиента")
+    private Integer number;
+
     public ClientRequestDto() {
     }
 
-    public ClientRequestDto(Integer id, String name) {
+    public ClientRequestDto(Integer id, String name, Integer number) {
         this.id = id;
         this.name = name;
+        this.number = number;
     }
 
     public Integer getId() {
@@ -33,5 +37,13 @@ public class ClientRequestDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

@@ -38,10 +38,13 @@ public class Project {
     @OneToMany(mappedBy = "projectTask")
     private List<Task> tasks;
 
+    @Column(name = "price")
+    private Long price;
+
     public Project() {
     }
 
-    public Project(Integer id, User userLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks) {
+    public Project(Integer id, User userLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks, Long price) {
         this.id = id;
         this.userLeader = userLeader;
         this.state = state;
@@ -50,6 +53,7 @@ public class Project {
         this.description = description;
         this.releases = releases;
         this.tasks = tasks;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -114,5 +118,13 @@ public class Project {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
     }
 }

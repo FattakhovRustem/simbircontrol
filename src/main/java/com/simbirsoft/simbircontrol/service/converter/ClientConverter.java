@@ -12,6 +12,7 @@ public class ClientConverter {
         Client client = new Client();
         client.setId(requestDto.getId());
         client.setName(requestDto.getName());
+        client.setNumber(requestDto.getNumber());
         return client;
     }
 
@@ -19,6 +20,7 @@ public class ClientConverter {
         ClientResponseDto responseDto = new ClientResponseDto();
         responseDto.setId(client.getId());
         responseDto.setName(client.getName());
+        responseDto.setNumber(client.getNumber());
         return responseDto;
     }
 }

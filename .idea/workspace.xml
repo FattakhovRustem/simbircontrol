@@ -23,8 +23,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c6e0865-a532-4580-ae27-68d2f18dae36" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/exception/NoMoneyClientException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/feign/BankClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/feign/dto/AccountResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/feign/dto/DetailRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/migrations/changelog-2.0.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/SimbirControlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/SimbirControlApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/entity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/entity/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/entity/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/entity/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ClientRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ClientRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ClientResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ClientResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ProjectRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ProjectRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ProjectResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/rest/dto/ProjectResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/converter/ClientConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/converter/ClientConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/converter/ProjectConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/converter/ProjectConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simbirsoft/simbircontrol/service/impl/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +52,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -61,6 +78,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
@@ -119,7 +137,9 @@
       <workItem from="1628104457594" duration="4518000" />
       <workItem from="1628522596287" duration="16099000" />
       <workItem from="1628607052339" duration="17838000" />
-      <workItem from="1628694429306" duration="19142000" />
+      <workItem from="1628694429306" duration="19736000" />
+      <workItem from="1629037266626" duration="12816000" />
+      <workItem from="1629213689986" duration="8565000" />
     </task>
     <servers />
   </component>
@@ -143,10 +163,10 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="733" y="362" key="#com.intellij.fileTypes.FileTypeChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1628008424804" />
-    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1628707659846">
+    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1629219340323">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1628707659846" />
+    <state x="1245" y="247" key="#com.intellij.ide.util.MemberChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1629219340323" />
     <state x="606" y="484" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1626779173760">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -155,30 +175,34 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="742" y="429" width="438" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.40.1920.1040@0.40.1920.1040" timestamp="1628523078452" />
-    <state x="0" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1628702311249">
+    <state x="0" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1629218869453">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="0" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1628702311249" />
+    <state x="0" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1629218869453" />
     <state x="690" y="307" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628710439627">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="690" y="307" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1628710439627" />
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom" timestamp="1628715111423">
+    <state x="740" y="315" key="FileChooserDialogImpl" timestamp="1629037475173">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
-    <state width="1877" height="271" key="GridCell.Tab.0.center" timestamp="1628715111423">
+    <state x="740" y="315" key="FileChooserDialogImpl/0.40.1920.1040@0.40.1920.1040" timestamp="1629037475173" />
+    <state width="1877" height="271" key="GridCell.Tab.0.bottom" timestamp="1629222113850">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
-    <state width="1877" height="271" key="GridCell.Tab.0.left" timestamp="1628715111423">
+    <state width="1877" height="271" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1629222113850" />
+    <state width="1877" height="271" key="GridCell.Tab.0.center" timestamp="1629222113850">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
-    <state width="1877" height="271" key="GridCell.Tab.0.right" timestamp="1628715111423">
+    <state width="1877" height="271" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1629222113850" />
+    <state width="1877" height="271" key="GridCell.Tab.0.left" timestamp="1629222113850">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1628715111423" />
+    <state width="1877" height="271" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1629222113850" />
+    <state width="1877" height="271" key="GridCell.Tab.0.right" timestamp="1629222113850">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="271" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1629222113850" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1628713401133">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -203,10 +227,18 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="461" y="205" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1627420682661" />
-    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup" timestamp="1628706612651">
+    <state x="627" y="242" key="new project wizard" timestamp="1629040921357">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1628706612651" />
+    <state x="627" y="242" key="new project wizard/0.40.1920.1040@0.40.1920.1040" timestamp="1629040921357" />
+    <state x="616" y="260" width="672" height="677" key="run.anything.popup" timestamp="1629220662172">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="616" y="260" width="672" height="677" key="run.anything.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1629220662172" />
+    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup" timestamp="1629217178763">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="1103" y="270" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1629217178763" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

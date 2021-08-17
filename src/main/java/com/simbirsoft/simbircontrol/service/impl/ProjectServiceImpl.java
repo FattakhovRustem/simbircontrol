@@ -6,7 +6,10 @@ import com.simbirsoft.simbircontrol.entity.Task;
 import com.simbirsoft.simbircontrol.entity.User;
 import com.simbirsoft.simbircontrol.enums.State;
 import com.simbirsoft.simbircontrol.exception.NoEntityException;
+import com.simbirsoft.simbircontrol.exception.NoMoneyClientException;
 import com.simbirsoft.simbircontrol.exception.UnfinishedTaskException;
+import com.simbirsoft.simbircontrol.feign.BankClient;
+import com.simbirsoft.simbircontrol.feign.dto.DetailRequestDto;
 import com.simbirsoft.simbircontrol.repository.UserRepository;
 import com.simbirsoft.simbircontrol.repository.ClientRepository;
 import com.simbirsoft.simbircontrol.repository.TaskRepository;
@@ -51,8 +54,9 @@ public class ProjectServiceImpl implements ProjectService {
     private final TaskRepository taskRepository;
     private final ReleaseRepository releaseRepository;
     private final TaskService taskService;
+    private final BankClient bankClient;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository, ProjectConverter projectConverter, ReleaseConverter releaseConverter, TaskConverter taskConverter, UserRepository userRepository, ClientRepository clientRepository, TaskRepository taskRepository, ReleaseRepository releaseRepository, TaskService taskService) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, ProjectConverter projectConverter, ReleaseConverter releaseConverter, TaskConverter taskConverter, UserRepository userRepository, ClientRepository clientRepository, TaskRepository taskRepository, ReleaseRepository releaseRepository, TaskService taskService, BankClient bankClient) {
         this.projectRepository = projectRepository;
         this.projectConverter = projectConverter;
         this.releaseConverter = releaseConverter;
@@ -62,6 +66,7 @@ public class ProjectServiceImpl implements ProjectService {
         this.taskRepository = taskRepository;
         this.releaseRepository = releaseRepository;
         this.taskService = taskService;
+        this.bankClient = bankClient;
     }
 
     @Transactional
@@ -148,6 +153,13 @@ public class ProjectServiceImpl implements ProjectService {
             if (list.size() > 0) {
                 throw new UnfinishedTaskException("Tasks not finished");
             }
+        }
+
+        if (requestDto.getState().name().equalsIgnoreCase(State.IN_PROGRESS.name())) {
+            if (project.getPrice() > bankClient.getBalanceAccount(client.getNumber()).getBalance()) {
+                throw new NoMoneyClientException("Client has no money");
+            }
+            bankClient.makeOperation(client.getNumber(), new DetailRequestDto((-1) * project.getPrice()));
         }
 
         project = projectConverter.fromProjectRequestDtoToProject(requestDto);

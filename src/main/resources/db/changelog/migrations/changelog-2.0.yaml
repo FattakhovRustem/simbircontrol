@@ -1,0 +1,19 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: addColumnInTable-client
+      author: Fattakhov Rustem
+      changes:
+        - addColumn:
+            tableName: client
+            columns:
+              - column: {name: number, type: INT}
+
+  - changeSet:
+      id: addColumnInTable-project
+      author: Fattakhov Rustem
+      changes:
+        - addColumn:
+            tableName: project
+            columns:
+              - column: {name: price, type: BIGINT}
