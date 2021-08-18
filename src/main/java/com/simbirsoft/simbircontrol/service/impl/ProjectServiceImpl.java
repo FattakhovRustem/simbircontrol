@@ -30,6 +30,8 @@ import com.simbirsoft.simbircontrol.service.filter.TaskFilter;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +45,7 @@ import java.util.stream.Collectors;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
+    private final static Logger logger = LoggerFactory.getLogger(ProjectServiceImpl.class);
 
     private final ProjectRepository projectRepository;
     private final ProjectConverter projectConverter;
@@ -79,14 +82,20 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public List<ReleaseResponseDto> getReleasesProject(Integer id) {
-        Project project = projectRepository.findById(id).orElseThrow(() -> new NoEntityException("Project with ID = " + id + " not found"));
+        Project project = projectRepository.findById(id).orElseThrow(() -> {
+            logger.error(String.format("getReleasesProject - Project with ID = %d not found", id));
+            return new NoEntityException(String.format("Project with ID = %d not found", id));
+        });
         return releaseRepository.findByProjectRelease(project).stream().map(releaseConverter::fromReleaseToReleaseResponseDto).collect(Collectors.toList());
     }
 
     @Transactional
     @Override
     public List<TaskResponseDto> getTasksProject(Integer id) {
-        Project project = projectRepository.findById(id).orElseThrow(() -> new NoEntityException("Project with ID = " + id + " not found"));
+        Project project = projectRepository.findById(id).orElseThrow(() -> {
+            logger.error(String.format("getTasksProject - Project with ID = %d not found", id));
+            return new NoEntityException(String.format("Project with ID = %d not found", id));
+        });
         return taskRepository.findByProjectTask(project).stream().map(taskConverter::fromTaskToTaskResponseDto).collect(Collectors.toList());
     }
 
@@ -109,8 +118,10 @@ public class ProjectServiceImpl implements ProjectService {
                 taskService.create(taskRequestDto);
             }
         } catch (IllegalArgumentException e) {
+            logger.error("Incorrect argument in record CSV-file");
             throw new IllegalArgumentException("Incorrect argument in record CSV-file");
         } catch (IOException e) {
+            logger.error("Unable get stream from file");
             e.printStackTrace();
         }
     }
@@ -124,15 +135,24 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public ProjectResponseDto getById(Integer id) {
-        Project project = projectRepository.findById(id).orElseThrow(() -> new NoEntityException("Project with ID = " + id + " not found"));
+        Project project = projectRepository.findById(id).orElseThrow(() -> {
+            logger.error(String.format("getById - Project with ID = %d not found", id));
+            return new NoEntityException(String.format("Project with ID = %d not found", id));
+        });
         return projectConverter.fromProjectToProjectResponseDto(project);
     }
 
     @Transactional
     @Override
     public ProjectResponseDto create(ProjectRequestDto requestDto) {
-        User user = userRepository.findById(requestDto.getUserIdLeader()).orElseThrow(() -> new NoEntityException("UserLeader with ID = " + requestDto.getUserIdLeader() + " not found"));
-        Client client = clientRepository.findById(requestDto.getClientId()).orElseThrow(() -> new NoEntityException("Client with ID = " + requestDto.getClientId() + " not found"));
+        User user = userRepository.findById(requestDto.getUserIdLeader()).orElseThrow(() -> {
+            logger.error(String.format("create - UserLeader with ID = %d not found", requestDto.getUserIdLeader()));
+            return new NoEntityException(String.format("UserLeader with ID = %d not found", requestDto.getUserIdLeader()));
+        });
+        Client client = clientRepository.findById(requestDto.getClientId()).orElseThrow(() -> {
+            logger.error(String.format("create - Client with ID = %d not found", requestDto.getClientId()));
+            return new NoEntityException(String.format("Client with ID = %d not found", requestDto.getClientId()));
+        });
         Project project = projectConverter.fromProjectRequestDtoToProject(requestDto);
         project.setClient(client);
         project.setUserLeader(user);
@@ -142,21 +162,32 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public ProjectResponseDto update(ProjectRequestDto requestDto) {
-        Project project = projectRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Project with ID = " + requestDto.getId() + " not found"));
-        User user = userRepository.findById(requestDto.getUserIdLeader()).orElseThrow(() -> new NoEntityException("UserLeader with ID = " + requestDto.getUserIdLeader() + " not found"));
-        Client client = clientRepository.findById(requestDto.getClientId()).orElseThrow(() -> new NoEntityException("Client with ID = " + requestDto.getClientId() + " not found"));
+        Project project = projectRepository.findById(requestDto.getId()).orElseThrow(() -> {
+            logger.error(String.format("update - Project with ID = %d not found", requestDto.getId()));
+            return new NoEntityException(String.format("Project with ID = %d not found", requestDto.getId()));
+        });
+        User user = userRepository.findById(requestDto.getUserIdLeader()).orElseThrow(() -> {
+            logger.error(String.format("update - UserLeader with ID = %d not found", requestDto.getUserIdLeader()));
+            return new NoEntityException(String.format("UserLeader with ID = %d not found", requestDto.getUserIdLeader()));
+        });
+        Client client = clientRepository.findById(requestDto.getClientId()).orElseThrow(() -> {
+            logger.error(String.format("update - Client with ID = %d not found", requestDto.getClientId()));
+            return new NoEntityException(String.format("Client with ID = %d not found", requestDto.getClientId()));
+        });
 
 
 
         if (requestDto.getState().name().equalsIgnoreCase(State.DONE.name())) {
             List<Task> list = taskRepository.findUnfinishedTasksByProject(project);
             if (list.size() > 0) {
+                logger.error("update - cannot completed project with unfinished tasks");
                 throw new UnfinishedTaskException("Tasks not finished");
             }
         }
 
         if (requestDto.getState().name().equalsIgnoreCase(State.IN_PROGRESS.name())) {
             if (project.getPrice() > bankClient.getBalanceAccount(client.getNumber()).getBalance()) {
+                logger.error("update - Client has no money");
                 throw new NoMoneyClientException("Client has no money");
             }
             bankClient.makeOperation(client.getNumber(), new DetailRequestDto((-1) * project.getPrice()));
@@ -172,7 +203,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public void deleteById(Integer id) {
-        projectRepository.findById(id).orElseThrow(() -> new NoEntityException("Project with ID = " + id + " not found"));
+        projectRepository.findById(id).orElseThrow(() -> {
+            logger.error(String.format("deleteById - Project with ID = %d not found", id));
+            return new NoEntityException(String.format("Project with ID = %d not found", id));
+        });
         projectRepository.deleteById(id);
     }
 }
