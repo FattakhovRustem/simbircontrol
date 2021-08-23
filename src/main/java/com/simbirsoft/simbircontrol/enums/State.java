@@ -5,6 +5,7 @@ import com.simbirsoft.simbircontrol.exception.NoEnumException;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 public enum State {
     BACKLOG("BACKLOG"),
@@ -26,7 +27,7 @@ public enum State {
 
         @Override
         public State convertToEntityAttribute(String s) {
-            return Arrays.stream(State.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException("State not found"));
+            return Arrays.stream(State.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException(ResourceBundle.getBundle("resource").getString("stateNotFound")));
         }
     }
 }

@@ -116,4 +116,9 @@ public class Task {
     public void setProjectTask(Project projectTask) {
         this.projectTask = projectTask;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((Task) obj).id);
+    }
 }

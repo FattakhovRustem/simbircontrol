@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto getById(Integer id) {
         User user = userRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("getById - User with ID = %d not found", id));
-            return new NoEntityException(String.format("User with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userNotFound"), id));
         });
         return userConverter.fromUserToUserResponseDto(user);
     }
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto update(UserRequestDto requestDto) {
         userRepository.findById(requestDto.getId()).orElseThrow(() -> {
             logger.error(String.format("update - User with ID = %d not found", requestDto.getId()));
-            return new NoEntityException(String.format("User with ID = %d not found", requestDto.getId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userNotFound"), requestDto.getId()));
         });
         User user = userRepository.save(userConverter.fromUserRequestDtoToUser(requestDto));
         return userConverter.fromUserToUserResponseDto(user);
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Integer id) {
         userRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("deleteById - User with ID = %d not found", id));
-            return new NoEntityException(String.format("User with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userNotFound"), id));
         });
         userRepository.deleteById(id);
     }

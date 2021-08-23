@@ -125,4 +125,10 @@ public class User {
     public void setTasksPerformer(List<Task> tasksPerformer) {
         this.tasksPerformer = tasksPerformer;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        User user = (User) obj;
+        return this.id.equals(user.id) && this.login.equals(user.login) && this.role.equals(user.role);
+    }
 }

@@ -95,4 +95,10 @@ public class ProjectResponseDto {
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        ProjectResponseDto responseDto = (ProjectResponseDto) obj;
+        return this.getId() == responseDto.getId() && this.getClientId() == responseDto.getClientId() && this.getName().equals(responseDto.getName());
+    }
 }

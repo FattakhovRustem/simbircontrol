@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,7 +54,7 @@ public class TaskServiceImpl implements TaskService {
     public TaskResponseDto getById(Integer id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("getById - Task with ID = %d not found", id));
-            return new NoEntityException(String.format("Task with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("taskNotFound"), id));
         });
         return taskConverter.fromTaskToTaskResponseDto(task);
     }
@@ -63,19 +64,19 @@ public class TaskServiceImpl implements TaskService {
     public TaskResponseDto create(TaskRequestDto requestDto) {
         Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> {
             logger.error(String.format("update - Project with ID = %d not found", requestDto.getProjectId()));
-            return new NoEntityException(String.format("Project with ID = %d not found", requestDto.getProjectId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("projectNotFound"), requestDto.getProjectId()));
         });
         Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> {
             logger.error(String.format("update - Release with ID = %d not found", requestDto.getReleaseId()));
-            return new NoEntityException(String.format("Release with ID = %d not found", requestDto.getReleaseId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("releaseNotFound"), requestDto.getReleaseId()));
         });
         User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> {
             logger.error(String.format("update - User-Author with ID = %d not found", requestDto.getIdAuthor()));
-            return new NoEntityException(String.format("User-Author with ID = %d not found", requestDto.getIdAuthor()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userAuthorNotFound"), requestDto.getIdAuthor()));
         });
         User userPerformer = userRepository.findById(requestDto.getIdPerformer()).orElseThrow(() -> {
             logger.error(String.format("update - User-Performer with ID = %d not found", requestDto.getIdPerformer()));
-            return new NoEntityException(String.format("User-Performer with ID = %d not found", requestDto.getIdPerformer()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userPerformerNotFound"), requestDto.getIdPerformer()));
         });
         Task task = taskConverter.fromTaskRequestDtoToTask(requestDto);
         task.setProjectTask(project);
@@ -91,23 +92,23 @@ public class TaskServiceImpl implements TaskService {
     public TaskResponseDto update(TaskRequestDto requestDto) {
         taskRepository.findById(requestDto.getId()).orElseThrow(() -> {
             logger.error(String.format("update - Task with ID = %d not found", requestDto.getId()));
-            return new NoEntityException(String.format("Task with ID = %d not found", requestDto.getId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("taskNotFound"), requestDto.getId()));
         });
         Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> {
             logger.error(String.format("update - Project with ID = %d not found", requestDto.getProjectId()));
-            return new NoEntityException(String.format("Project with ID = %d not found", requestDto.getProjectId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("projectNotFound"), requestDto.getProjectId()));
         });
         Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> {
             logger.error(String.format("update - Release with ID = %d not found", requestDto.getReleaseId()));
-            return new NoEntityException(String.format("Release with ID = %d not found", requestDto.getReleaseId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("releaseNotFound"), requestDto.getReleaseId()));
         });
         User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> {
             logger.error(String.format("update - User-Author with ID = %d not found", requestDto.getIdAuthor()));
-            return new NoEntityException(String.format("User-Author with ID = %d not found", requestDto.getIdAuthor()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userAuthorNotFound"), requestDto.getIdAuthor()));
         });
         User userPerformer = userRepository.findById(requestDto.getIdPerformer()).orElseThrow(() -> {
             logger.error(String.format("update - User-Performer with ID = %d not found", requestDto.getIdPerformer()));
-            return new NoEntityException(String.format("User-Performer with ID = %d not found", requestDto.getIdPerformer()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userPerformerNotFound"), requestDto.getIdPerformer()));
         });
 
         Task task = taskConverter.fromTaskRequestDtoToTask(requestDto);
@@ -124,7 +125,7 @@ public class TaskServiceImpl implements TaskService {
     public void deleteById(Integer id) {
         taskRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("deleteById - Task with ID = %d not found", id));
-            return new NoEntityException(String.format("Task with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("taskNotFound"), id));
         });
         taskRepository.deleteById(id);
     }

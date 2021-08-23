@@ -1,5 +1,6 @@
 package com.simbirsoft.simbircontrol.rest.dto;
 
+import com.simbirsoft.simbircontrol.entity.Client;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Клиент")
@@ -45,5 +46,11 @@ public class ClientResponseDto {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        ClientResponseDto clientResponseDto = (ClientResponseDto) obj;
+        return (this.id.equals(clientResponseDto.id) && this.number.equals(clientResponseDto.number));
     }
 }

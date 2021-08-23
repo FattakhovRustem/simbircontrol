@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientResponseDto getById(Integer id) {
         Client client = clientRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("getById - Client with ID = %d not found", id));
-            return new NoEntityException(String.format("Client with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("clientNotFound"), id));
         });
         return clientConverter.fromClientToClientResponseDto(client);
     }
@@ -57,7 +58,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientResponseDto update(ClientRequestDto requestDto) {
         clientRepository.findById(requestDto.getId()).orElseThrow(() -> {
             logger.error(String.format("update - Client with ID = %d not found", requestDto.getId()));
-            return new NoEntityException(String.format("Client with ID = %d not found", requestDto.getId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("clientNotFound"), requestDto.getId()));
         });
         Client client = clientRepository.save(clientConverter.fromClientRequestDtoToClient(requestDto));
         return clientConverter.fromClientToClientResponseDto(client);
@@ -68,7 +69,7 @@ public class ClientServiceImpl implements ClientService {
     public void deleteById(Integer id) {
         clientRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("deleteById - Client with ID = %d not found", id));
-            return new NoEntityException(String.format("Client with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("clientNotFound"), id));
         });
         clientRepository.deleteById(id);
     }

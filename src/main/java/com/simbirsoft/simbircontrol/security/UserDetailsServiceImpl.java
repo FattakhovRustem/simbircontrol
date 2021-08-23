@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 @Service
@@ -31,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByLogin(s).orElseThrow(() -> new NoEntityException("User not found"));
+        User user = userRepository.findByLogin(s).orElseThrow(() -> new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userLoginNotFound"), s)));
         Set<GrantedAuthority> roles = new HashSet<>();
         roles.add(new SimpleGrantedAuthority(user.getRole().name()));
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(

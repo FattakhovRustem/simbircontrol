@@ -1,5 +1,6 @@
 package com.simbirsoft.simbircontrol.rest;
 
+import com.simbirsoft.simbircontrol.exception.NoEntityException;
 import com.simbirsoft.simbircontrol.rest.dto.UserRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.UserResponseDto;
 import com.simbirsoft.simbircontrol.service.UserService;
@@ -24,7 +25,7 @@ import java.util.List;
 
 @Tag(name = "Управление пользователями")
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -80,5 +81,10 @@ public class UserController {
     @ExceptionHandler(IOException.class)
     public ResponseEntity handleIOExcenption(IOException e) {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoEntityException.class)
+    public ResponseEntity handleNoEntityException(NoEntityException e) {
+        return ResponseEntity.ok().body(e.getMessage());
     }
 }
