@@ -2,12 +2,12 @@ package com.simbirsoft.simbircontrol.service.impl;
 
 import com.simbirsoft.simbircontrol.entity.Client;
 import com.simbirsoft.simbircontrol.entity.Project;
-import com.simbirsoft.simbircontrol.entity.User;
+import com.simbirsoft.simbircontrol.entity.Usr;
 import com.simbirsoft.simbircontrol.enums.Role;
 import com.simbirsoft.simbircontrol.enums.State;
 import com.simbirsoft.simbircontrol.repository.ClientRepository;
 import com.simbirsoft.simbircontrol.repository.ProjectRepository;
-import com.simbirsoft.simbircontrol.repository.UserRepository;
+import com.simbirsoft.simbircontrol.repository.UsrRepository;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import com.simbirsoft.simbircontrol.service.ProjectService;
 import org.junit.After;
@@ -37,7 +37,7 @@ public class ProjectServiceImplTestDB {
     private ClientRepository clientRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UsrRepository usrRepository;
 
     Project project = new Project();
 
@@ -48,18 +48,18 @@ public class ProjectServiceImplTestDB {
         client.setNumber(101582);
         client = clientRepository.save(client);
 
-        User user = new User();
-        user.setRole(Role.ADMIN);
-        user.setSurname("Ivanov");
-        user.setName("Ivan");
-        user.setLogin("ivan");
-        user.setPassword("passivan");
-        user = userRepository.save(user);
+        Usr usr = new Usr();
+        usr.setRole(Role.ADMIN);
+        usr.setSurname("Ivanov");
+        usr.setName("Ivan");
+        usr.setLogin("ivan");
+        usr.setPassword("passivan");
+        usr = usrRepository.save(usr);
 
         project.setState(State.BACKLOG);
         project.setName("ProjectTest");
         project.setClient(client);
-        project.setUserLeader(user);
+        project.setUserLeader(usr);
         project.setPrice(456456L);
         project.setDescription("des");
         project = projectRepository.save(project);
@@ -84,7 +84,7 @@ public class ProjectServiceImplTestDB {
 
     @After
     public void close() {
-        userRepository.deleteAll();
+        usrRepository.deleteAll();
         clientRepository.deleteAll();
         projectRepository.deleteAll();
     }

@@ -2,7 +2,7 @@ package com.simbirsoft.simbircontrol.service.converter;
 
 import com.simbirsoft.simbircontrol.entity.Client;
 import com.simbirsoft.simbircontrol.entity.Project;
-import com.simbirsoft.simbircontrol.entity.User;
+import com.simbirsoft.simbircontrol.entity.Usr;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import org.junit.Assert;
@@ -25,7 +25,7 @@ public class ProjectConverterTest {
     @Before
     public void init() {
         project.setId(394);
-        project.setUserLeader(new User());
+        project.setUserLeader(new Usr());
         project.setClient(new Client());
     }
 

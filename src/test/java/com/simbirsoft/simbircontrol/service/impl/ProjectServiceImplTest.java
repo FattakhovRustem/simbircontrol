@@ -3,7 +3,7 @@ package com.simbirsoft.simbircontrol.service.impl;
 import com.simbirsoft.simbircontrol.entity.Client;
 import com.simbirsoft.simbircontrol.entity.Project;
 import com.simbirsoft.simbircontrol.entity.Task;
-import com.simbirsoft.simbircontrol.entity.User;
+import com.simbirsoft.simbircontrol.entity.Usr;
 import com.simbirsoft.simbircontrol.enums.State;
 import com.simbirsoft.simbircontrol.exception.NoMoneyClientException;
 import com.simbirsoft.simbircontrol.exception.UnfinishedTaskException;
@@ -13,7 +13,7 @@ import com.simbirsoft.simbircontrol.feign.dto.DetailRequestDto;
 import com.simbirsoft.simbircontrol.repository.ClientRepository;
 import com.simbirsoft.simbircontrol.repository.ProjectRepository;
 import com.simbirsoft.simbircontrol.repository.TaskRepository;
-import com.simbirsoft.simbircontrol.repository.UserRepository;
+import com.simbirsoft.simbircontrol.repository.UsrRepository;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
 import com.simbirsoft.simbircontrol.service.converter.ProjectConverter;
@@ -44,7 +44,7 @@ public class ProjectServiceImplTest {
     @Mock
     private ClientRepository clientRepository;
     @Mock
-    private UserRepository userRepository;
+    private UsrRepository usrRepository;
     @Mock
     private TaskRepository taskRepository;
 
@@ -56,7 +56,7 @@ public class ProjectServiceImplTest {
 
 
     Project project = new Project();
-    User user = new User();
+    Usr usr = new Usr();
     Client client = new Client();
     Project projectNew = new Project();
 
@@ -67,7 +67,7 @@ public class ProjectServiceImplTest {
     public void beforeTest() {
         project.setPrice(100000L);
         Mockito.when(projectRepository.findById(Mockito.any())).thenReturn(Optional.of(project));
-        Mockito.when(userRepository.findById(Mockito.any())).thenReturn(Optional.of(user));
+        Mockito.when(usrRepository.findById(Mockito.any())).thenReturn(Optional.of(usr));
         Mockito.when(clientRepository.findById(Mockito.any())).thenReturn(Optional.of(client));
 
 

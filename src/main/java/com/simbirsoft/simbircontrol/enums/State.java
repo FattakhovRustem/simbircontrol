@@ -17,7 +17,7 @@ public enum State {
     State(String name) {
         this.name = name;
     }
-
+/*
     @Converter(autoApply = true)
     public class StateConverter implements AttributeConverter<State, String> {
         @Override
@@ -27,7 +27,9 @@ public enum State {
 
         @Override
         public State convertToEntityAttribute(String s) {
-            return Arrays.stream(State.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException(ResourceBundle.getBundle("resource").getString("stateNotFound")));
+            return Arrays.stream(State.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException(String.format(ResourceBundle.getBundle("resource").getString("stateNotFound"), s)));
         }
     }
+
+ */
 }

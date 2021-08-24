@@ -4,7 +4,7 @@ import com.simbirsoft.simbircontrol.enums.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Пользователь")
-public class UserRequestDto {
+public class UsrRequestDto {
 
     @Schema(description = "ID пользователя")
     private Integer id;
@@ -24,10 +24,10 @@ public class UserRequestDto {
     @Schema(description = "Пароль")
     private String password;
 
-    public UserRequestDto() {
+    public UsrRequestDto() {
     }
 
-    public UserRequestDto(Integer id, Role role, String surname, String name, String login, String password) {
+    public UsrRequestDto(Integer id, Role role, String surname, String name, String login, String password) {
         this.id = id;
         this.role = role;
         this.surname = surname;
@@ -82,5 +82,15 @@ public class UserRequestDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", role = " + role.name() +
+                ", surname = " + surname +
+                ", name = " + name +
+                ", login = " + login +
+                ", password = " + password;
     }
 }

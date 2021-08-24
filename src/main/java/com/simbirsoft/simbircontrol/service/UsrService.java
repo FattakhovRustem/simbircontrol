@@ -1,38 +1,38 @@
 package com.simbirsoft.simbircontrol.service;
 
-import com.simbirsoft.simbircontrol.rest.dto.UserRequestDto;
-import com.simbirsoft.simbircontrol.rest.dto.UserResponseDto;
+import com.simbirsoft.simbircontrol.rest.dto.UsrRequestDto;
+import com.simbirsoft.simbircontrol.rest.dto.UsrResponseDto;
 
 import java.util.List;
 
-public interface UserService {
+public interface UsrService {
 
     /**
      * get all users
      * @return list users
      */
-    List<UserResponseDto> getAll();
+    List<UsrResponseDto> getAll();
 
     /**
      * get user by his id
      * @param id id user
      * @return user
      */
-    UserResponseDto getById(Integer id);
+    UsrResponseDto getById(Integer id);
 
     /**
      * create new user
      * @param requestDto properties new user
      * @return new user
      */
-    UserResponseDto create(UserRequestDto requestDto);
+    UsrResponseDto create(UsrRequestDto requestDto);
 
     /**
      * update old user new values
      * @param requestDto new values user
      * @return user
      */
-    UserResponseDto update(UserRequestDto requestDto);
+    UsrResponseDto update(UsrRequestDto requestDto);
 
     /**
      * delete user by his id

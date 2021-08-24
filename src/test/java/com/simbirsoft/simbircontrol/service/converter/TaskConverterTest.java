@@ -3,7 +3,7 @@ package com.simbirsoft.simbircontrol.service.converter;
 import com.simbirsoft.simbircontrol.entity.Project;
 import com.simbirsoft.simbircontrol.entity.Release;
 import com.simbirsoft.simbircontrol.entity.Task;
-import com.simbirsoft.simbircontrol.entity.User;
+import com.simbirsoft.simbircontrol.entity.Usr;
 import com.simbirsoft.simbircontrol.rest.dto.TaskRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 import org.junit.Assert;
@@ -27,8 +27,8 @@ public class TaskConverterTest {
     public void init() {
         task.setId(123);
         task.setName("Task123");
-        task.setUserPerformer(new User());
-        task.setUserAuthor(new User());
+        task.setUserPerformer(new Usr());
+        task.setUserAuthor(new Usr());
         task.setRelease(new Release());
         task.setProjectTask(new Project());
     }

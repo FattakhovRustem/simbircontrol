@@ -2,12 +2,21 @@ package com.simbirsoft.simbircontrol.entity;
 
 import com.simbirsoft.simbircontrol.enums.Role;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import java.util.List;
+
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Usr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +48,10 @@ public class User {
     private List<Task> tasksPerformer;
 
 
-    public User() {
+    public Usr() {
     }
 
-    public User(Integer id, Role role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
+    public Usr(Integer id, Role role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
         this.id = id;
         this.role = role;
         this.surname = surname;
@@ -128,7 +137,7 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        User user = (User) obj;
-        return this.id.equals(user.id) && this.login.equals(user.login) && this.role.equals(user.role);
+        Usr usr = (Usr) obj;
+        return this.id.equals(usr.id) && this.login.equals(usr.login) && this.role.equals(usr.role);
     }
 }

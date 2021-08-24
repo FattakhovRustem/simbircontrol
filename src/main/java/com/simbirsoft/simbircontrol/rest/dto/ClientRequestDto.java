@@ -46,4 +46,11 @@ public class ClientRequestDto {
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", name = " + name +
+                ", number = " + number;
+    }
 }

@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@FeignClient(name = "bank", url = "http://localhost:8081/account")
+@FeignClient(name = "bank", url = "${bank.api-base-url}")
 public interface BankClient {
 
-    @GetMapping(value = "/{number}/balance")
+    @GetMapping(value = "/account/{number}/balance")
     AccountResponseDto getBalanceAccount(@PathVariable Integer number);
 
-    @PutMapping(value = "/{number}/operation")
+    @PutMapping(value = "/account/{number}/operation")
     AccountResponseDto makeOperation(@PathVariable Integer number, @RequestBody DetailRequestDto requestDto);
 }

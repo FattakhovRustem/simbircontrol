@@ -18,7 +18,7 @@ public enum Role {
     Role(String name) {
         this.name = name;
     }
-
+/*
     @Converter(autoApply = true)
     public class RoleConverter implements AttributeConverter<Role, String> {
         @Override
@@ -28,8 +28,8 @@ public enum Role {
 
         @Override
         public Role convertToEntityAttribute(String s) {
-            return Arrays.stream(Role.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException(ResourceBundle.getBundle("resource").getString("roleNotFound")));
+            return Arrays.stream(Role.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException(String.format(ResourceBundle.getBundle("resource").getString("roleNotFound"), s)));
         }
     }
-
+*/
 }

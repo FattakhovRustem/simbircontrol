@@ -2,7 +2,17 @@ package com.simbirsoft.simbircontrol.entity;
 
 import com.simbirsoft.simbircontrol.enums.State;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 
 @Entity
@@ -26,11 +36,11 @@ public class Task {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_author", nullable = false)
-    private User userAuthor;
+    private Usr userAuthor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_performer", nullable = false)
-    private User userPerformer;
+    private Usr userPerformer;
 
     @Column(name = "name")
     private String name;
@@ -42,7 +52,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, State state, String description, Release release, User userAuthor, User userPerformer, String name, Project projectTask) {
+    public Task(Integer id, State state, String description, Release release, Usr userAuthor, Usr userPerformer, String name, Project projectTask) {
         this.id = id;
         this.state = state;
         this.description = description;
@@ -85,19 +95,19 @@ public class Task {
         this.release = release;
     }
 
-    public User getUserAuthor() {
+    public Usr getUserAuthor() {
         return userAuthor;
     }
 
-    public void setUserAuthor(User userAuthor) {
+    public void setUserAuthor(Usr userAuthor) {
         this.userAuthor = userAuthor;
     }
 
-    public User getUserPerformer() {
+    public Usr getUserPerformer() {
         return userPerformer;
     }
 
-    public void setUserPerformer(User userPerformer) {
+    public void setUserPerformer(Usr userPerformer) {
         this.userPerformer = userPerformer;
     }
 

@@ -95,4 +95,15 @@ public class ProjectRequestDto {
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", userIdLeader = " + userIdLeader +
+                ", state = " + state.name() +
+                ", name = " + name +
+                ", clientId = " + clientId +
+                ", description = " + description +
+                ", price = " + price;
+    }
 }

@@ -56,9 +56,11 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     @Override
     public ClientResponseDto update(ClientRequestDto requestDto) {
-        clientRepository.findById(requestDto.getId()).orElseThrow(() -> {
-            logger.error(String.format("update - Client with ID = %d not found", requestDto.getId()));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("clientNotFound"), requestDto.getId()));
+        Integer clientIdFromRequest = requestDto.getId();
+
+        clientRepository.findById(clientIdFromRequest).orElseThrow(() -> {
+            logger.error(String.format("update - Client with ID = %d not found", clientIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("clientNotFound"), clientIdFromRequest));
         });
         Client client = clientRepository.save(clientConverter.fromClientRequestDtoToClient(requestDto));
         return clientConverter.fromClientToClientResponseDto(client);

@@ -1,9 +1,9 @@
 package com.simbirsoft.simbircontrol.security;
 
-import com.simbirsoft.simbircontrol.entity.User;
+import com.simbirsoft.simbircontrol.entity.Usr;
 import com.simbirsoft.simbircontrol.enums.Role;
 import com.simbirsoft.simbircontrol.exception.NoEntityException;
-import com.simbirsoft.simbircontrol.repository.UserRepository;
+import com.simbirsoft.simbircontrol.repository.UsrRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +18,10 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UsrRepository usrRepository;
 
-    public UserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDetailsServiceImpl(UsrRepository usrRepository) {
+        this.usrRepository = usrRepository;
     }
 
     /**
@@ -32,11 +32,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByLogin(s).orElseThrow(() -> new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userLoginNotFound"), s)));
+        Usr usr = usrRepository.findByLogin(s).orElseThrow(() -> new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userLoginNotFound"), s)));
         Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(user.getRole().name()));
+        roles.add(new SimpleGrantedAuthority(usr.getRole().name()));
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
-                user.getLogin(), user.getPassword(), roles
+                usr.getLogin(), usr.getPassword(), roles
         );
         return userDetails;
     }
