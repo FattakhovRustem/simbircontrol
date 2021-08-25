@@ -125,6 +125,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
+    @Transactional
     @Override
     public List<TaskResponseDto> getFilteredTasksProject(Integer id, List<Condition> conditions) {
         TaskFilter filter = new TaskFilter(conditions);
@@ -144,12 +145,12 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public ProjectResponseDto create(ProjectRequestDto requestDto) {
-        Integer usrIdFromRequest = requestDto.getUserIdLeader();
+        Integer usrIdFromRequest = requestDto.getUsrIdLeader();
         Integer clientIdFromRequest = requestDto.getClientId();
 
         Usr usr = usrRepository.findById(usrIdFromRequest).orElseThrow(() -> {
-            logger.error(String.format("create - UserLeader with ID = %d not found", usrIdFromRequest));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userLeaderNotFound"), usrIdFromRequest));
+            logger.error(String.format("create - UsrLeader with ID = %d not found", usrIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrLeaderNotFound"), usrIdFromRequest));
         });
         Client client = clientRepository.findById(clientIdFromRequest).orElseThrow(() -> {
             logger.error(String.format("create - Client with ID = %d not found", clientIdFromRequest));
@@ -157,7 +158,7 @@ public class ProjectServiceImpl implements ProjectService {
         });
         Project project = projectConverter.fromProjectRequestDtoToProject(requestDto);
         project.setClient(client);
-        project.setUserLeader(usr);
+        project.setUsrLeader(usr);
         return projectConverter.fromProjectToProjectResponseDto(projectRepository.save(project));
     }
 
@@ -168,10 +169,9 @@ public class ProjectServiceImpl implements ProjectService {
         if (state == null) {
             throw new EnumIsNullException(ResourceBundle.getBundle("resource").getString("roleIsNull"));
         }
-        String stateString = requestDto.getState().name();
 
         Integer projectIdFromRequest = requestDto.getId();
-        Integer usrIdFromRequest = requestDto.getUserIdLeader();
+        Integer usrIdFromRequest = requestDto.getUsrIdLeader();
         Integer clientIdFromRequest = requestDto.getClientId();
 
         Project project = projectRepository.findById(projectIdFromRequest).orElseThrow(() -> {
@@ -180,7 +180,7 @@ public class ProjectServiceImpl implements ProjectService {
         });
         Usr usr = usrRepository.findById(usrIdFromRequest).orElseThrow(() -> {
             logger.error(String.format("update - UsrLeader with ID = %d not found", usrIdFromRequest));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userLeaderNotFound"), usrIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrLeaderNotFound"), usrIdFromRequest));
         });
         Client client = clientRepository.findById(clientIdFromRequest).orElseThrow(() -> {
             logger.error(String.format("update - Client with ID = %d not found", clientIdFromRequest));
@@ -188,7 +188,8 @@ public class ProjectServiceImpl implements ProjectService {
         });
 
 
-        if (stateString.equalsIgnoreCase(State.DONE.name())) {
+        //if (stateString.equalsIgnoreCase(State.DONE.name())) {
+        if (state == State.DONE) {
             List<Task> list = taskRepository.findUnfinishedTasksByProject(project);
             if (list.size() > 0) {
                 logger.error("update - cannot completed project with unfinished tasks");
@@ -196,7 +197,8 @@ public class ProjectServiceImpl implements ProjectService {
             }
         }
 
-        if (stateString.equalsIgnoreCase(State.IN_PROGRESS.name())) {
+        //if (stateString.equalsIgnoreCase(State.IN_PROGRESS.name())) {
+        if (state == State.DONE) {
             if (project.getPrice() > bankClient.getBalanceAccount(client.getNumber()).getBalance()) {
                 logger.error("update - Client has no money");
                 throw new NoMoneyClientException(ResourceBundle.getBundle("resource").getString("noMoney"));
@@ -205,7 +207,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         project = projectConverter.fromProjectRequestDtoToProject(requestDto);
-        project.setUserLeader(usr);
+        project.setUsrLeader(usr);
         project.setClient(client);
 
         return projectConverter.fromProjectToProjectResponseDto(projectRepository.save(project));

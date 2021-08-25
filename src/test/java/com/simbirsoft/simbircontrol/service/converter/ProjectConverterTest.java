@@ -25,7 +25,7 @@ public class ProjectConverterTest {
     @Before
     public void init() {
         project.setId(394);
-        project.setUserLeader(new Usr());
+        project.setUsrLeader(new Usr());
         project.setClient(new Client());
     }
 

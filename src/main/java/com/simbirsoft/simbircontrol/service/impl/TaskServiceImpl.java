@@ -64,8 +64,8 @@ public class TaskServiceImpl implements TaskService {
     public TaskResponseDto create(TaskRequestDto requestDto) {
         Integer projectIdFromRequest = requestDto.getProjectId();
         Integer releaseIdFromRequest = requestDto.getReleaseId();
-        Integer userAuthorIdFromRequest = requestDto.getIdAuthor();
-        Integer userPerformerIdFromRequest = requestDto.getIdPerformer();
+        Integer usrAuthorIdFromRequest = requestDto.getIdAuthor();
+        Integer usrPerformerIdFromRequest = requestDto.getIdPerformer();
 
 
         Project project = projectRepository.findById(projectIdFromRequest).orElseThrow(() -> {
@@ -76,19 +76,19 @@ public class TaskServiceImpl implements TaskService {
             logger.error(String.format("update - Release with ID = %d not found", releaseIdFromRequest));
             return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("releaseNotFound"), releaseIdFromRequest));
         });
-        Usr userAuthor = usrRepository.findById(userAuthorIdFromRequest).orElseThrow(() -> {
-            logger.error(String.format("update - User-Author with ID = %d not found", userAuthorIdFromRequest));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userAuthorNotFound"), userAuthorIdFromRequest));
+        Usr usrAuthor = usrRepository.findById(usrAuthorIdFromRequest).orElseThrow(() -> {
+            logger.error(String.format("update - Usr-Author with ID = %d not found", usrAuthorIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrAuthorNotFound"), usrAuthorIdFromRequest));
         });
-        Usr userPerformer = usrRepository.findById(userPerformerIdFromRequest).orElseThrow(() -> {
-            logger.error(String.format("update - User-Performer with ID = %d not found", userPerformerIdFromRequest));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userPerformerNotFound"), userPerformerIdFromRequest));
+        Usr usrPerformer = usrRepository.findById(usrPerformerIdFromRequest).orElseThrow(() -> {
+            logger.error(String.format("update - Usr-Performer with ID = %d not found", usrPerformerIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrPerformerNotFound"), usrPerformerIdFromRequest));
         });
         Task task = taskConverter.fromTaskRequestDtoToTask(requestDto);
         task.setProjectTask(project);
         task.setRelease(release);
-        task.setUserAuthor(userAuthor);
-        task.setUserPerformer(userPerformer);
+        task.setUsrAuthor(usrAuthor);
+        task.setUsrPerformer(usrPerformer);
 
         return taskConverter.fromTaskToTaskResponseDto(taskRepository.save(task));
     }
@@ -113,20 +113,20 @@ public class TaskServiceImpl implements TaskService {
             logger.error(String.format("update - Release with ID = %d not found", releaseIdFromRequest));
             return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("releaseNotFound"), releaseIdFromRequest));
         });
-        Usr userAuthor = usrRepository.findById(usrAuthorIdFromRequest).orElseThrow(() -> {
-            logger.error(String.format("update - User-Author with ID = %d not found", usrAuthorIdFromRequest));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userAuthorNotFound"), usrAuthorIdFromRequest));
+        Usr usrAuthor = usrRepository.findById(usrAuthorIdFromRequest).orElseThrow(() -> {
+            logger.error(String.format("update - Usr-Author with ID = %d not found", usrAuthorIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrAuthorNotFound"), usrAuthorIdFromRequest));
         });
-        Usr userPerformer = usrRepository.findById(usrPerformerIdFromRequest).orElseThrow(() -> {
-            logger.error(String.format("update - User-Performer with ID = %d not found", usrPerformerIdFromRequest));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userPerformerNotFound"), usrPerformerIdFromRequest));
+        Usr usrPerformer = usrRepository.findById(usrPerformerIdFromRequest).orElseThrow(() -> {
+            logger.error(String.format("update - Usr-Performer with ID = %d not found", usrPerformerIdFromRequest));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrPerformerNotFound"), usrPerformerIdFromRequest));
         });
 
         Task task = taskConverter.fromTaskRequestDtoToTask(requestDto);
         task.setProjectTask(project);
         task.setRelease(release);
-        task.setUserAuthor(userAuthor);
-        task.setUserPerformer(userPerformer);
+        task.setUsrAuthor(usrAuthor);
+        task.setUsrPerformer(usrPerformer);
 
         return taskConverter.fromTaskToTaskResponseDto(taskRepository.save(task));
     }

@@ -40,8 +40,8 @@ public class UsrServiceImpl implements UsrService {
     @Override
     public UsrResponseDto getById(Integer id) {
         Usr usr = usrRepository.findById(id).orElseThrow(() -> {
-            logger.error(String.format("getById - User with ID = %d not found", id));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userNotFound"), id));
+            logger.error(String.format("getById - Usr with ID = %d not found", id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrNotFound"), id));
         });
         return usrConverter.fromUsrToUsrResponseDto(usr);
     }
@@ -57,8 +57,8 @@ public class UsrServiceImpl implements UsrService {
     @Override
     public UsrResponseDto update(UsrRequestDto requestDto) {
         usrRepository.findById(requestDto.getId()).orElseThrow(() -> {
-            logger.error(String.format("update - User with ID = %d not found", requestDto.getId()));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userNotFound"), requestDto.getId()));
+            logger.error(String.format("update - Usr with ID = %d not found", requestDto.getId()));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrNotFound"), requestDto.getId()));
         });
         Usr usr = usrRepository.save(usrConverter.fromUsrRequestDtoToUsr(requestDto));
         return usrConverter.fromUsrToUsrResponseDto(usr);
@@ -69,7 +69,7 @@ public class UsrServiceImpl implements UsrService {
     public void deleteById(Integer id) {
         usrRepository.findById(id).orElseThrow(() -> {
             logger.error(String.format("deleteById - Usr with ID = %d not found", id));
-            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("userNotFound"), id));
+            return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("usrNotFound"), id));
         });
         usrRepository.deleteById(id);
     }

@@ -20,7 +20,7 @@ public class ProjectConverter {
 
     public ProjectResponseDto fromProjectToProjectResponseDto(Project project) {
         ProjectResponseDto responseDto = new ProjectResponseDto();
-        responseDto.setUserIdLeader(project.getUserLeader().getId());
+        responseDto.setUsrIdLeader(project.getUsrLeader().getId());
         responseDto.setState(project.getState());
         responseDto.setName(project.getName());
         responseDto.setId(project.getId());

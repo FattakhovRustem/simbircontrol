@@ -27,8 +27,8 @@ public class TaskConverterTest {
     public void init() {
         task.setId(123);
         task.setName("Task123");
-        task.setUserPerformer(new Usr());
-        task.setUserAuthor(new Usr());
+        task.setUsrPerformer(new Usr());
+        task.setUsrAuthor(new Usr());
         task.setRelease(new Release());
         task.setProjectTask(new Project());
     }

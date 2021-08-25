@@ -14,38 +14,38 @@ import org.springframework.context.annotation.Profile;
 
 @RunWith(MockitoJUnitRunner.class)
 @Profile("test")
-public class UserConverterTest {
+public class UsrConverterTest {
 
     @InjectMocks
     private UsrConverter usrConverter;
 
-    private Usr user = new Usr();
+    private Usr usr = new Usr();
 
     @Before
     public void init() {
-        user.setId(100);
-        user.setLogin("ivan");
-        user.setRole(Role.ADMIN);
+        usr.setId(100);
+        usr.setLogin("ivan");
+        usr.setRole(Role.ADMIN);
     }
 
     @Test
-    public void fromUserRequestDtoToUserTest() {
-        UsrRequestDto userRequestDto = new UsrRequestDto();
-        userRequestDto.setId(100);
-        userRequestDto.setLogin("ivan");
-        userRequestDto.setRole(Role.ADMIN);
-        Usr actual = usrConverter.fromUsrRequestDtoToUsr(userRequestDto);
+    public void fromUsrRequestDtoToUsrTest() {
+        UsrRequestDto usrRequestDto = new UsrRequestDto();
+        usrRequestDto.setId(100);
+        usrRequestDto.setLogin("ivan");
+        usrRequestDto.setRole(Role.ADMIN);
+        Usr actual = usrConverter.fromUsrRequestDtoToUsr(usrRequestDto);
 
-        Assert.assertEquals(user, actual);
+        Assert.assertEquals(usr, actual);
     }
 
     @Test
-    public void fromUserToUserResponseDtoTest() {
+    public void fromUsrToUsrResponseDtoTest() {
         UsrResponseDto expected = new UsrResponseDto();
         expected.setId(100);
         expected.setLogin("ivan");
         expected.setRole(Role.ADMIN);
-        UsrResponseDto actual = usrConverter.fromUsrToUsrResponseDto(user);
+        UsrResponseDto actual = usrConverter.fromUsrToUsrResponseDto(usr);
 
         Assert.assertEquals(expected, actual);
     }

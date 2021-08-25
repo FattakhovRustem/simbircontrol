@@ -75,7 +75,7 @@ public class ProjectServiceImplTest {
         Mockito.when(projectConverter.fromProjectRequestDtoToProject(Mockito.any())).thenReturn(projectNew);
 
         expected.setId(11);
-        expected.setUserIdLeader(15);
+        expected.setUsrIdLeader(15);
         expected.setClientId(23);
         expected.setName("SimbirSoft");
         expected.setPrice(100000L);
@@ -83,7 +83,7 @@ public class ProjectServiceImplTest {
         Mockito.when(projectConverter.fromProjectToProjectResponseDto(Mockito.any())).thenReturn(expected);
 
         requestDto.setId(11);
-        requestDto.setUserIdLeader(15);
+        requestDto.setUsrIdLeader(15);
         requestDto.setClientId(23);
         requestDto.setName("SimbirSoft");
         requestDto.setPrice(100000L);

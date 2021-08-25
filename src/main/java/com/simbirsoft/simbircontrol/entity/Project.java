@@ -27,7 +27,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_leader", nullable = false)
-    private Usr userLeader;
+    private Usr usrLeader;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
@@ -55,9 +55,9 @@ public class Project {
     public Project() {
     }
 
-    public Project(Integer id, Usr userLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks, Long price) {
+    public Project(Integer id, Usr usrLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks, Long price) {
         this.id = id;
-        this.userLeader = userLeader;
+        this.usrLeader = usrLeader;
         this.state = state;
         this.name = name;
         this.client = client;
@@ -75,12 +75,12 @@ public class Project {
         this.id = id;
     }
 
-    public Usr getUserLeader() {
-        return userLeader;
+    public Usr getUsrLeader() {
+        return usrLeader;
     }
 
-    public void setUserLeader(Usr userLeader) {
-        this.userLeader = userLeader;
+    public void setUsrLeader(Usr usrLeader) {
+        this.usrLeader = usrLeader;
     }
 
     public State getState() {

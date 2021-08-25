@@ -8,35 +8,35 @@ import java.util.List;
 public interface UsrService {
 
     /**
-     * get all users
-     * @return list users
+     * get all usrs
+     * @return list usrs
      */
     List<UsrResponseDto> getAll();
 
     /**
-     * get user by his id
-     * @param id id user
-     * @return user
+     * get usr by his id
+     * @param id id usr
+     * @return usr
      */
     UsrResponseDto getById(Integer id);
 
     /**
-     * create new user
-     * @param requestDto properties new user
-     * @return new user
+     * create new usr
+     * @param requestDto properties new usr
+     * @return new usr
      */
     UsrResponseDto create(UsrRequestDto requestDto);
 
     /**
-     * update old user new values
-     * @param requestDto new values user
-     * @return user
+     * update old usr new values
+     * @param requestDto new values usr
+     * @return usr
      */
     UsrResponseDto update(UsrRequestDto requestDto);
 
     /**
-     * delete user by his id
-     * @param id id user
+     * delete usr by his id
+     * @param id id usr
      */
     void deleteById(Integer id);
 }

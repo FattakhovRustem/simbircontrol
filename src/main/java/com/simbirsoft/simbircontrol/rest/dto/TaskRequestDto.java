@@ -111,7 +111,7 @@ public class TaskRequestDto {
     @Override
     public String toString() {
         return "id = " + id +
-                ", state = " + state.name() +
+                ", state = " + state +
                 ", releaseId = " + releaseId +
                 ", idAuthor = " + idAuthor +
                 ", idPerformer = " + idPerformer +

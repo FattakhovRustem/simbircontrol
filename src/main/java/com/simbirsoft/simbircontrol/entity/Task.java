@@ -36,11 +36,11 @@ public class Task {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_author", nullable = false)
-    private Usr userAuthor;
+    private Usr usrAuthor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_performer", nullable = false)
-    private Usr userPerformer;
+    private Usr usrPerformer;
 
     @Column(name = "name")
     private String name;
@@ -52,13 +52,13 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, State state, String description, Release release, Usr userAuthor, Usr userPerformer, String name, Project projectTask) {
+    public Task(Integer id, State state, String description, Release release, Usr usrAuthor, Usr usrPerformer, String name, Project projectTask) {
         this.id = id;
         this.state = state;
         this.description = description;
         this.release = release;
-        this.userAuthor = userAuthor;
-        this.userPerformer = userPerformer;
+        this.usrAuthor = usrAuthor;
+        this.usrPerformer = usrPerformer;
         this.name = name;
         this.projectTask = projectTask;
     }
@@ -95,20 +95,20 @@ public class Task {
         this.release = release;
     }
 
-    public Usr getUserAuthor() {
-        return userAuthor;
+    public Usr getUsrAuthor() {
+        return usrAuthor;
     }
 
-    public void setUserAuthor(Usr userAuthor) {
-        this.userAuthor = userAuthor;
+    public void setUsrAuthor(Usr usrAuthor) {
+        this.usrAuthor = usrAuthor;
     }
 
-    public Usr getUserPerformer() {
-        return userPerformer;
+    public Usr getUsrPerformer() {
+        return usrPerformer;
     }
 
-    public void setUserPerformer(Usr userPerformer) {
-        this.userPerformer = userPerformer;
+    public void setUsrPerformer(Usr usrPerformer) {
+        this.usrPerformer = usrPerformer;
     }
 
     public String getName() {
@@ -129,6 +129,7 @@ public class Task {
 
     @Override
     public boolean equals(Object obj) {
-        return this.id.equals(((Task) obj).id);
+        Task task = (Task) obj;
+        return this.id.equals(task.id) && this.name.equals(task.name) && this.projectTask.getId().equals(task.getProjectTask().getId());
     }
 }

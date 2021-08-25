@@ -87,7 +87,7 @@ public class UsrRequestDto {
     @Override
     public String toString() {
         return "id = " + id +
-                ", role = " + role.name() +
+                ", role = " + role +
                 ", surname = " + surname +
                 ", name = " + name +
                 ", login = " + login +

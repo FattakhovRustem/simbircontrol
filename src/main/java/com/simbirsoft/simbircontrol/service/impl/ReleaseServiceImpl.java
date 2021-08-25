@@ -49,6 +49,7 @@ public class ReleaseServiceImpl implements ReleaseService {
         return taskRepository.findUnfinishedTasksByReleaseId(id);
     }
 
+    @Transactional
     @Override
     public ReleaseResponseDto getById(Integer id) {
         releaseRepository.findById(id).orElseThrow(() -> {

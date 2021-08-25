@@ -10,7 +10,7 @@ public class ProjectResponseDto {
     private Integer id;
 
     @Schema(description = "ID руководителя проекта")
-    private Integer userIdLeader;
+    private Integer usrIdLeader;
 
     @Schema(description = "Статус")
     private State state;
@@ -30,9 +30,9 @@ public class ProjectResponseDto {
     public ProjectResponseDto() {
     }
 
-    public ProjectResponseDto(Integer id, Integer userIdLeader, State state, String name, Integer clientId, String description, Long price) {
+    public ProjectResponseDto(Integer id, Integer usrIdLeader, State state, String name, Integer clientId, String description, Long price) {
         this.id = id;
-        this.userIdLeader = userIdLeader;
+        this.usrIdLeader = usrIdLeader;
         this.state = state;
         this.name = name;
         this.clientId = clientId;
@@ -48,12 +48,12 @@ public class ProjectResponseDto {
         this.id = id;
     }
 
-    public Integer getUserIdLeader() {
-        return userIdLeader;
+    public Integer getUsrIdLeader() {
+        return usrIdLeader;
     }
 
-    public void setUserIdLeader(Integer userIdLeader) {
-        this.userIdLeader = userIdLeader;
+    public void setUsrIdLeader(Integer usrIdLeader) {
+        this.usrIdLeader = usrIdLeader;
     }
 
     public State getState() {

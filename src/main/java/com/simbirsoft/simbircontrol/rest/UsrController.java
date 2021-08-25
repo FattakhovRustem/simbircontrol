@@ -83,8 +83,10 @@ public class UsrController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
+    /*
     @ExceptionHandler(NoEntityException.class)
     public ResponseEntity handleNoEntityException(NoEntityException e) {
         return ResponseEntity.ok().body(e.getMessage());
     }
+    */
 }

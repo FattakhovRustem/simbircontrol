@@ -24,8 +24,8 @@ public class TaskConverter {
         responseDto.setState(task.getState());
         responseDto.setName(task.getName());
         responseDto.setDescription(task.getDescription());
-        responseDto.setIdAuthor(task.getUserAuthor().getId());
-        responseDto.setIdPerformer(task.getUserPerformer().getId());
+        responseDto.setIdAuthor(task.getUsrAuthor().getId());
+        responseDto.setIdPerformer(task.getUsrPerformer().getId());
         responseDto.setProjectId(task.getProjectTask().getId());
         responseDto.setReleaseId(task.getRelease().getId());
 

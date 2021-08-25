@@ -78,7 +78,7 @@ public class ReleaseRequestDto {
         return "id = " + id +
                 ", projectId = " + projectId +
                 ", version = " + version +
-                ", dateStart = " + dateStart.toString() +
-                ", dateEnd = " + dateEnd.toString();
+                ", dateStart = " + (dateStart != null ? dateStart.toString() : "null") +
+                ", dateEnd = " + (dateEnd != null ? dateEnd.toString() : "null");
     }
 }

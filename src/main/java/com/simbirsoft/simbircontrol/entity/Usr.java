@@ -38,13 +38,13 @@ public class Usr {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "userLeader")
+    @OneToMany(mappedBy = "usrLeader")
     private List<Project> projectsLeader;
 
-    @OneToMany(mappedBy = "userAuthor")
+    @OneToMany(mappedBy = "usrAuthor")
     private List<Task> tasksAuthor;
 
-    @OneToMany(mappedBy = "userPerformer")
+    @OneToMany(mappedBy = "usrPerformer")
     private List<Task> tasksPerformer;
 
 
