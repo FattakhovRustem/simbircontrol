@@ -102,6 +102,8 @@ public class ProjectServiceImplTest {
 
         // Метод должен быть вызван 1 раз
         Mockito.verify(taskRepository).findUnfinishedTasksByProject(Mockito.any());
+        // Не должен быть вызван
+        Mockito.verify(bankClient, Mockito.never()).getBalanceAccount(Mockito.any());
 
         Assert.assertTrue(expected.equals(actual));
     }

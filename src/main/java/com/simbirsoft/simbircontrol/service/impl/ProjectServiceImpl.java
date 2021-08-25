@@ -187,8 +187,6 @@ public class ProjectServiceImpl implements ProjectService {
             return new NoEntityException(String.format(ResourceBundle.getBundle("resource").getString("clientNotFound"), clientIdFromRequest));
         });
 
-
-        //if (stateString.equalsIgnoreCase(State.DONE.name())) {
         if (state == State.DONE) {
             List<Task> list = taskRepository.findUnfinishedTasksByProject(project);
             if (list.size() > 0) {
@@ -197,8 +195,7 @@ public class ProjectServiceImpl implements ProjectService {
             }
         }
 
-        //if (stateString.equalsIgnoreCase(State.IN_PROGRESS.name())) {
-        if (state == State.DONE) {
+        if (state == State.IN_PROGRESS) {
             if (project.getPrice() > bankClient.getBalanceAccount(client.getNumber()).getBalance()) {
                 logger.error("update - Client has no money");
                 throw new NoMoneyClientException(ResourceBundle.getBundle("resource").getString("noMoney"));

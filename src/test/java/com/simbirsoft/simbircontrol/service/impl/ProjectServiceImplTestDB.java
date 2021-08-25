@@ -165,31 +165,33 @@ public class ProjectServiceImplTestDB {
         MultipartFile file = new MockMultipartFile("file.csv", "file.csv", "text/plain", content);
         projectService.addTasksFromCSV(0, file);
 
+        Integer id = task.getId();
+
         Task expected1 = new Task();
         expected1.setName("Task100");
         expected1.setProjectTask(project);
         expected1.setUsrAuthor(usrAuthor);
         expected1.setUsrPerformer(usrPerformer);
-        expected1.setId(task.getId() + 1);
+        expected1.setId(id + 1);
 
         Task expected2 = new Task();
         expected2.setName("Task200");
         expected2.setProjectTask(project);
         expected2.setUsrAuthor(usrAuthor);
         expected2.setUsrPerformer(usrPerformer);
-        expected2.setId(task.getId() + 2);
+        expected2.setId(id + 2);
 
         Task expected3 = new Task();
         expected3.setName("Task300");
         expected3.setProjectTask(project);
         expected3.setUsrAuthor(usrAuthor);
         expected3.setUsrPerformer(usrPerformer);
-        expected3.setId(task.getId() + 3);
+        expected3.setId(id + 3);
 
 
-        Task actual1 = taskRepository.getById(task.getId() + 1);
-        Task actual2 = taskRepository.getById(task.getId() + 2);
-        Task actual3 = taskRepository.getById(task.getId() + 3);
+        Task actual1 = taskRepository.getById(id + 1);
+        Task actual2 = taskRepository.getById(id + 2);
+        Task actual3 = taskRepository.getById(id + 3);
         Assert.assertEquals(expected1, actual1);
         Assert.assertEquals(expected2, actual2);
         Assert.assertEquals(expected3, actual3);

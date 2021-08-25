@@ -99,6 +99,6 @@ public class ProjectResponseDto {
     @Override
     public boolean equals(Object obj) {
         ProjectResponseDto responseDto = (ProjectResponseDto) obj;
-        return this.getId() == responseDto.getId() && this.getClientId() == responseDto.getClientId() && this.getName().equals(responseDto.getName());
+        return this.getId().equals(responseDto.getId()) && this.getClientId().equals(responseDto.getClientId()) && this.getName().equals(responseDto.getName());
     }
 }
