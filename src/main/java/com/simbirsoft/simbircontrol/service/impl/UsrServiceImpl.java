@@ -9,6 +9,7 @@ import com.simbirsoft.simbircontrol.service.UsrService;
 import com.simbirsoft.simbircontrol.service.converter.UsrConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +50,8 @@ public class UsrServiceImpl implements UsrService {
     @Transactional
     @Override
     public UsrResponseDto create(UsrRequestDto requestDto) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        requestDto.setPassword(bCryptPasswordEncoder.encode(requestDto.getPassword()));
         Usr usr = usrRepository.save(usrConverter.fromUsrRequestDtoToUsr(requestDto));
         return usrConverter.fromUsrToUsrResponseDto(usr);
     }
