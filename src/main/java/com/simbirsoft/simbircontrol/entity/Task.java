@@ -127,9 +127,4 @@ public class Task {
         this.projectTask = projectTask;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Task task = (Task) obj;
-        return this.id.equals(task.id) && this.name.equals(task.name) && this.projectTask.getId().equals(task.getProjectTask().getId());
-    }
 }

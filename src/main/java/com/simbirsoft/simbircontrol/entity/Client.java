@@ -68,9 +68,4 @@ public class Client {
         this.number = numberr;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Client client = (Client) obj;
-        return (this.id.equals(client.id) && this.number.equals(client.number));
-    }
 }

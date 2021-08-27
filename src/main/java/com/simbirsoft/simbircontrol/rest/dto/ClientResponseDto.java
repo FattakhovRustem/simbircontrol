@@ -48,9 +48,4 @@ public class ClientResponseDto {
         this.number = number;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        ClientResponseDto clientResponseDto = (ClientResponseDto) obj;
-        return (this.id.equals(clientResponseDto.id) && this.number.equals(clientResponseDto.number));
-    }
 }

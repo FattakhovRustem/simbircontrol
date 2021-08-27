@@ -35,7 +35,9 @@ public class ClientConverterTest {
         clientRequestDto.setName("SimbirSoft");
         Client actual = clientConverter.fromClientRequestDtoToClient(clientRequestDto);
 
-        Assert.assertEquals(client, actual);
+        Assert.assertEquals(client.getId(), actual.getId());
+        Assert.assertEquals(client.getName(), actual.getName());
+        Assert.assertEquals(client.getNumber(), actual.getNumber());
     }
 
     @Test
@@ -44,7 +46,11 @@ public class ClientConverterTest {
         expected.setId(10);
         expected.setNumber(103456);
         expected.setName("SimbirSoft");
+
         ClientResponseDto actual = clientConverter.fromClientToClientResponseDto(client);
-        Assert.assertEquals(expected, actual);
+
+        Assert.assertEquals(expected.getId(), actual.getId());
+        Assert.assertEquals(expected.getName(), actual.getName());
+        Assert.assertEquals(expected.getNumber(), actual.getNumber());
     }
 }

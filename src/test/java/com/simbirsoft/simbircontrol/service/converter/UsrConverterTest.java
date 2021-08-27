@@ -26,6 +26,8 @@ public class UsrConverterTest {
         usr.setId(100);
         usr.setLogin("ivan");
         usr.setRole(Role.ADMIN);
+        usr.setName("Ivan");
+        usr.setSurname("Ivanov");
     }
 
     @Test
@@ -34,9 +36,15 @@ public class UsrConverterTest {
         usrRequestDto.setId(100);
         usrRequestDto.setLogin("ivan");
         usrRequestDto.setRole(Role.ADMIN);
+        usrRequestDto.setName("Ivan");
+        usrRequestDto.setSurname("Ivanov");
         Usr actual = usrConverter.fromUsrRequestDtoToUsr(usrRequestDto);
 
-        Assert.assertEquals(usr, actual);
+        Assert.assertEquals(usr.getId(), actual.getId());
+        Assert.assertEquals(usr.getLogin(), actual.getLogin());
+        Assert.assertEquals(usr.getRole(), actual.getRole());
+        Assert.assertEquals(usr.getName(), actual.getName());
+        Assert.assertEquals(usr.getSurname(), actual.getSurname());
     }
 
     @Test
@@ -45,9 +53,15 @@ public class UsrConverterTest {
         expected.setId(100);
         expected.setLogin("ivan");
         expected.setRole(Role.ADMIN);
+        expected.setName("Ivan");
+        expected.setSurname("Ivanov");
         UsrResponseDto actual = usrConverter.fromUsrToUsrResponseDto(usr);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected.getId(), actual.getId());
+        Assert.assertEquals(expected.getLogin(), actual.getLogin());
+        Assert.assertEquals(expected.getRole(), actual.getRole());
+        Assert.assertEquals(expected.getName(), actual.getName());
+        Assert.assertEquals(expected.getSurname(), actual.getSurname());
     }
 
 }

@@ -135,9 +135,4 @@ public class Usr {
         this.tasksPerformer = tasksPerformer;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Usr usr = (Usr) obj;
-        return this.id.equals(usr.id) && this.login.equals(usr.login) && this.role.equals(usr.role);
-    }
 }

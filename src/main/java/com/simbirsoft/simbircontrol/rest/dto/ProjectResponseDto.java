@@ -96,9 +96,4 @@ public class ProjectResponseDto {
         this.price = price;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        ProjectResponseDto responseDto = (ProjectResponseDto) obj;
-        return this.getId().equals(responseDto.getId()) && this.getClientId().equals(responseDto.getClientId()) && this.getName().equals(responseDto.getName());
-    }
 }

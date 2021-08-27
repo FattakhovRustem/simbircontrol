@@ -84,9 +84,4 @@ public class UsrResponseDto {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        UsrResponseDto usrResponseDto = (UsrResponseDto) obj;
-        return this.id.equals(usrResponseDto.id) && this.login.equals(usrResponseDto.login) && this.role.equals(usrResponseDto.role);
-    }
 }
