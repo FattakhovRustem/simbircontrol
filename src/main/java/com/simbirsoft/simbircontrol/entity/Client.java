@@ -23,12 +23,17 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Project> projects;
 
+    @Column(name = "number")
+    private Integer number;
+
     public Client() {
     }
 
-    public Client(Integer id, String name) {
+    public Client(Integer id, String name, List<Project> projects, Integer number) {
         this.id = id;
         this.name = name;
+        this.projects = projects;
+        this.number = number;
     }
 
     public Integer getId() {
@@ -45,5 +50,21 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer numberr) {
+        this.number = numberr;
     }
 }

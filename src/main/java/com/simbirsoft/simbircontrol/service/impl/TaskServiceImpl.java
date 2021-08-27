@@ -13,6 +13,8 @@ import com.simbirsoft.simbircontrol.rest.dto.TaskRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 import com.simbirsoft.simbircontrol.service.TaskService;
 import com.simbirsoft.simbircontrol.service.converter.TaskConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl implements TaskService {
+
+    private final static Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 
     private final TaskRepository taskRepository;
     private final TaskConverter taskConverter;
@@ -47,17 +51,32 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public TaskResponseDto getById(Integer id) {
-        Task task = taskRepository.findById(id).orElseThrow(() -> new NoEntityException("Task with ID = " + id + " not found"));
+        Task task = taskRepository.findById(id).orElseThrow(() -> {
+            logger.error(String.format("getById - Task with ID = %d not found", id));
+            return new NoEntityException(String.format("Task with ID = %d not found", id));
+        });
         return taskConverter.fromTaskToTaskResponseDto(task);
     }
 
     @Transactional
     @Override
     public TaskResponseDto create(TaskRequestDto requestDto) {
-        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project with ID = " + requestDto.getProjectId() + " not found"));
-        Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> new NoEntityException("Release with ID = " + requestDto.getReleaseId() + " not found"));
-        User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> new NoEntityException("User-Author with ID = " + requestDto.getIdAuthor() + " not found"));
-        User userPerformer = userRepository.findById(requestDto.getIdPerformer()).orElseThrow(() -> new NoEntityException("User-Performer with ID = " + requestDto.getIdPerformer() + " not found"));
+        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> {
+            logger.error(String.format("update - Project with ID = %d not found", requestDto.getProjectId()));
+            return new NoEntityException(String.format("Project with ID = %d not found", requestDto.getProjectId()));
+        });
+        Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> {
+            logger.error(String.format("update - Release with ID = %d not found", requestDto.getReleaseId()));
+            return new NoEntityException(String.format("Release with ID = %d not found", requestDto.getReleaseId()));
+        });
+        User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> {
+            logger.error(String.format("update - User-Author with ID = %d not found", requestDto.getIdAuthor()));
+            return new NoEntityException(String.format("User-Author with ID = %d not found", requestDto.getIdAuthor()));
+        });
+        User userPerformer = userRepository.findById(requestDto.getIdPerformer()).orElseThrow(() -> {
+            logger.error(String.format("update - User-Performer with ID = %d not found", requestDto.getIdPerformer()));
+            return new NoEntityException(String.format("User-Performer with ID = %d not found", requestDto.getIdPerformer()));
+        });
         Task task = taskConverter.fromTaskRequestDtoToTask(requestDto);
         task.setProjectTask(project);
         task.setRelease(release);
@@ -70,11 +89,27 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public TaskResponseDto update(TaskRequestDto requestDto) {
-        taskRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Task with ID = " + requestDto.getId() + " not found"));
-        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> new NoEntityException("Project with ID = " + requestDto.getProjectId() + " not found"));
-        Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> new NoEntityException("Release with ID = " + requestDto.getReleaseId() + " not found"));
-        User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> new NoEntityException("User-Author with ID = " + requestDto.getIdAuthor() + " not found"));
-        User userPerformer = userRepository.findById(requestDto.getIdPerformer()).orElseThrow(() -> new NoEntityException("User-Performer with ID = " + requestDto.getIdPerformer() + " not found"));
+        taskRepository.findById(requestDto.getId()).orElseThrow(() -> {
+            logger.error(String.format("update - Task with ID = %d not found", requestDto.getId()));
+            return new NoEntityException(String.format("Task with ID = %d not found", requestDto.getId()));
+        });
+        Project project = projectRepository.findById(requestDto.getProjectId()).orElseThrow(() -> {
+            logger.error(String.format("update - Project with ID = %d not found", requestDto.getProjectId()));
+            return new NoEntityException(String.format("Project with ID = %d not found", requestDto.getProjectId()));
+        });
+        Release release = releaseRepository.findById(requestDto.getReleaseId()).orElseThrow(() -> {
+            logger.error(String.format("update - Release with ID = %d not found", requestDto.getReleaseId()));
+            return new NoEntityException(String.format("Release with ID = %d not found", requestDto.getReleaseId()));
+        });
+        User userAuthor = userRepository.findById(requestDto.getIdAuthor()).orElseThrow(() -> {
+            logger.error(String.format("update - User-Author with ID = %d not found", requestDto.getIdAuthor()));
+            return new NoEntityException(String.format("User-Author with ID = %d not found", requestDto.getIdAuthor()));
+        });
+        User userPerformer = userRepository.findById(requestDto.getIdPerformer()).orElseThrow(() -> {
+            logger.error(String.format("update - User-Performer with ID = %d not found", requestDto.getIdPerformer()));
+            return new NoEntityException(String.format("User-Performer with ID = %d not found", requestDto.getIdPerformer()));
+        });
+
         Task task = taskConverter.fromTaskRequestDtoToTask(requestDto);
         task.setProjectTask(project);
         task.setRelease(release);
@@ -87,7 +122,10 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public void deleteById(Integer id) {
-        taskRepository.findById(id).orElseThrow(() -> new NoEntityException("Task with ID = " + id + " not found"));
+        taskRepository.findById(id).orElseThrow(() -> {
+            logger.error(String.format("deleteById - Task with ID = %d not found", id));
+            return new NoEntityException(String.format("Task with ID = %d not found", id));
+        });
         taskRepository.deleteById(id);
     }
 }

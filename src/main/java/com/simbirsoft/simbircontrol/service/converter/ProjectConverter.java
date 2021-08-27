@@ -14,6 +14,7 @@ public class ProjectConverter {
         project.setState(requestDto.getState());
         project.setName(requestDto.getName());
         project.setDescription(requestDto.getDescription());
+        project.setPrice(requestDto.getPrice());
         return project;
     }
 
@@ -25,6 +26,7 @@ public class ProjectConverter {
         responseDto.setId(project.getId());
         responseDto.setDescription(project.getDescription());
         responseDto.setClientId(project.getClient().getId());
+        responseDto.setPrice(project.getPrice());
         return responseDto;
     }
 }

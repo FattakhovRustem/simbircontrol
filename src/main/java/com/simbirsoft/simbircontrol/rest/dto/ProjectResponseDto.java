@@ -24,16 +24,20 @@ public class ProjectResponseDto {
     @Schema(description = "Описание проекта")
     private String description;
 
+    @Schema(description = "Стоимость проекта")
+    private Long price;
+
     public ProjectResponseDto() {
     }
 
-    public ProjectResponseDto(Integer id, Integer userIdLeader, State state, String name, Integer clientId, String description) {
+    public ProjectResponseDto(Integer id, Integer userIdLeader, State state, String name, Integer clientId, String description, Long price) {
         this.id = id;
         this.userIdLeader = userIdLeader;
         this.state = state;
         this.name = name;
         this.clientId = clientId;
         this.description = description;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -82,5 +86,13 @@ public class ProjectResponseDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
     }
 }

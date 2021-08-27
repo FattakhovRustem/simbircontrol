@@ -3,8 +3,11 @@ package com.simbirsoft.simbircontrol.rest;
 import com.simbirsoft.simbircontrol.rest.dto.ClientRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ClientResponseDto;
 import com.simbirsoft.simbircontrol.service.ClientService;
+import com.simbirsoft.simbircontrol.service.converter.ClientConverter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +28,8 @@ import java.util.List;
 @RequestMapping("/client")
 public class ClientController {
 
+    private final static Logger logger = LoggerFactory.getLogger(ClientController.class);
+
     private final ClientService clientService;
 
     public ClientController(ClientService clientService) {
@@ -34,6 +39,7 @@ public class ClientController {
     @Operation(summary = "Получить список клиентов")
     @GetMapping(value = "/all")
     public ResponseEntity<List<ClientResponseDto>> getAllClients() {
+        logger.info("GET /client/all");
         List<ClientResponseDto> list =  clientService.getAll();
         return ResponseEntity.ok().body(list);
     }
@@ -41,6 +47,7 @@ public class ClientController {
     @Operation(summary = "Получить клиента")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ClientResponseDto> getClient(@PathVariable Integer id) {
+        logger.info(String.format("GET /client id = %d ", id));
         ClientResponseDto responseDto = clientService.getById(id);
         return ResponseEntity.ok().body(responseDto);
     }
@@ -48,6 +55,8 @@ public class ClientController {
     @Operation(summary = "Создать клиента")
     @PostMapping(value = "/create")
     public ResponseEntity<ClientResponseDto> createClient(@RequestBody ClientRequestDto requestDto) {
+        logger.info("POST /client/create");
+        logger.debug("ClientRequestDto {}", requestDto);
         ClientResponseDto responseDto = clientService.create(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
@@ -55,6 +64,8 @@ public class ClientController {
     @Operation(summary = "Изменить клиента")
     @PutMapping(value = "/update")
     public ResponseEntity<ClientResponseDto> updateClient(@RequestBody  ClientRequestDto requestDto) {
+        logger.info(String.format("PUT /client/update id = %d", requestDto.getId()));
+        logger.debug("ClientRequestDto {}", requestDto);
         ClientResponseDto responseDto = clientService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
@@ -62,6 +73,7 @@ public class ClientController {
     @Operation(summary = "Удалить клиента")
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable Integer id) {
+        logger.info(String.format("DELETE /client/delete id = %d", id));
         clientService.deleteById(id);
         return ResponseEntity.ok().build();
     }
