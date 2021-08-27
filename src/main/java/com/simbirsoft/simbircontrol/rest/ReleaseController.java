@@ -24,10 +24,10 @@ public class ReleaseController {
         this.releaseService = releaseService;
     }
 
-    @Operation(summary = "Получить релиз проекта")
-    @GetMapping(value = "/all/{projectId}")
-    public ResponseEntity<List<ReleaseResponseDto>> getReleasesProject(@PathVariable Integer projectId) {
-        return ResponseEntity.ok().body(releaseService.getReleasesProject(projectId));
+    @Operation(summary = "Количество задач не завершенных в заданный релиз")
+    @GetMapping(value = "/{id}/countUnfinishedTasks")
+    public ResponseEntity<Integer> getCountUnfinishedTasks(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(releaseService.getUnfinishedTasksById(id));
     }
 
     @Operation(summary = "Получить релиз")

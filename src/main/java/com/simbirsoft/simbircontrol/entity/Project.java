@@ -1,15 +1,8 @@
 package com.simbirsoft.simbircontrol.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import com.simbirsoft.simbircontrol.enums.State;
+
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -25,8 +18,9 @@ public class Project {
     @JoinColumn(name = "user_id_leader", nullable = false)
     private User userLeader;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    private String state;
+    private State state;
 
     @Column(name = "name")
     private String name;
@@ -47,7 +41,7 @@ public class Project {
     public Project() {
     }
 
-    public Project(Integer id, User userLeader, String state, String name, Client client, String description, List<Release> releases, List<Task> tasks) {
+    public Project(Integer id, User userLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks) {
         this.id = id;
         this.userLeader = userLeader;
         this.state = state;
@@ -74,11 +68,11 @@ public class Project {
         this.userLeader = userLeader;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 

@@ -1,5 +1,6 @@
 package com.simbirsoft.simbircontrol.rest.dto;
 
+import com.simbirsoft.simbircontrol.enums.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Пользователь")
@@ -9,7 +10,7 @@ public class UserResponseDto {
     private Integer id;
 
     @Schema(description = "Роль")
-    private String role;
+    private Role role;
 
     @Schema(description = "Фамилия")
     private String surname;
@@ -26,7 +27,7 @@ public class UserResponseDto {
     public UserResponseDto() {
     }
 
-    public UserResponseDto(Integer id, String role, String surname, String name, String login, String password) {
+    public UserResponseDto(Integer id, Role role, String surname, String name, String login, String password) {
         this.id = id;
         this.role = role;
         this.surname = surname;
@@ -43,11 +44,11 @@ public class UserResponseDto {
         this.id = id;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

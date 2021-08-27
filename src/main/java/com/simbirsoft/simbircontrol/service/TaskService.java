@@ -16,4 +16,5 @@ public interface TaskService {
     TaskResponseDto update(TaskRequestDto requestDto);
 
     void deleteById(Integer id);
+
 }

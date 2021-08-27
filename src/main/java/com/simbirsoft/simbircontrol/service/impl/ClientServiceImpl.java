@@ -10,7 +10,6 @@ import com.simbirsoft.simbircontrol.service.converter.ClientConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,7 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     @Override
     public ClientResponseDto getById(Integer id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new NoEntityException("Client not found"));
+        Client client = clientRepository.findById(id).orElseThrow(() -> new NoEntityException("Client with ID = " + id + " not found"));
         return clientConverter.fromClientToClientResponseDto(client);
     }
 
@@ -49,7 +48,7 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     @Override
     public ClientResponseDto update(ClientRequestDto requestDto) {
-        clientRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Client not found"));
+        clientRepository.findById(requestDto.getId()).orElseThrow(() -> new NoEntityException("Client with ID = " + requestDto.getId() + " not found"));
         Client client = clientRepository.save(clientConverter.fromClientRequestDtoToClient(requestDto));
         return clientConverter.fromClientToClientResponseDto(client);
     }
@@ -57,7 +56,7 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     @Override
     public void deleteById(Integer id) {
-        clientRepository.findById(id).orElseThrow(() -> new NoEntityException("Client not found"));
+        clientRepository.findById(id).orElseThrow(() -> new NoEntityException("Client with ID = " + id + " not found"));
         clientRepository.deleteById(id);
     }
 }

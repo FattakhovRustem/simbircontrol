@@ -2,6 +2,8 @@ package com.simbirsoft.simbircontrol.rest;
 
 import com.simbirsoft.simbircontrol.rest.dto.ProjectRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ProjectResponseDto;
+import com.simbirsoft.simbircontrol.rest.dto.ReleaseResponseDto;
+import com.simbirsoft.simbircontrol.rest.dto.TaskResponseDto;
 import com.simbirsoft.simbircontrol.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,6 +38,18 @@ public class ProjectController {
     public ResponseEntity<List<ProjectResponseDto>> getAllProjects() {
         List<ProjectResponseDto> list =  projectService.getAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @Operation(summary = "Получить список релизов проекта")
+    @GetMapping(value = "/{id}/releases")
+    public ResponseEntity<List<ReleaseResponseDto>> getReleasesProject(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(projectService.getReleasesProject(id));
+    }
+
+    @Operation(summary = "Получить список задач проекта")
+    @GetMapping(value = "/{id}/tasks")
+    public ResponseEntity<List<TaskResponseDto>> getTasksProject(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(projectService.getTasksProject(id));
     }
 
     @Operation(summary = "Получить проект")
