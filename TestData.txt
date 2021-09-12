@@ -1,0 +1,67 @@
+INSERT INTO public.users(role, surname, name, login, password)
+	VALUES ('ADMIN', 'Ivanov', 'Ivan', 'ivan', '$2a$12$L.mQMOoO5gdSUt14ygocOuIJBshCskbEvyOnNji4gVCJXYt0Kr2zy');
+
+INSERT INTO public.users(role, surname, name, login, password)
+	VALUES ('LEADER', 'Petrov', 'Petr', 'petr', '$2a$12$nhGwzNB9x/67eWYiHum/E.cXFBn/l62tEhVlXWsnuKdMSTuPBQkKi');
+
+INSERT INTO public.users(role, surname, name, login, password)
+	VALUES ('AUTHOR', 'Sidrov', 'Sidr', 'sidr', '$2a$12$B2gxNI3YYf1GDAWHvna8Y.PuDI38TKB5abfbOWSUBfX6D4vdTDpVS');
+
+INSERT INTO public.users(role, surname, name, login, password)
+	VALUES ('PERFORMER', 'Egorov', 'Egor', 'egor', '$2a$12$YzL4T0tK0uy4LAXSd1D2POyKBpbVYYXd.FiEitCRomxdn3lp174C2');
+
+----------------------------------------------------------------------------------------
+
+INSERT INTO public.client(name, number)
+	VALUES ('SimbirSoft', 101480183);
+
+INSERT INTO public.client(name, number)
+	VALUES ('Megafon', 101010);
+	
+----------------------------------------------------------------------------------------
+	
+INSERT INTO public.project(user_id_leader, state, name, client_id, description, price)
+	VALUES (4, 'BACKLOG', 'SimProject', 1, 'has money', 75000);
+	
+INSERT INTO public.project(user_id_leader, state, name, client_id, description, price)
+	VALUES (4, 'BACKLOG', 'MegProject', 2, 'no money', 30030);
+
+----------------------------------------------------------------------------------------	
+	
+INSERT INTO public.release(project_id, version, date_start, date_end)
+	VALUES (1, '1.0', current_date-60, current_date-30);
+
+INSERT INTO public.release(project_id, version, date_start, date_end)
+	VALUES (1, '2.0', current_date-29, current_date+10);
+
+INSERT INTO public.release(project_id, version, date_start, date_end)
+	VALUES (2, '1.0', current_date-10, current_date+10);
+
+INSERT INTO public.release(project_id, version, date_start, date_end)
+	VALUES (2, '2.0', current_date+11, current_date+20);
+
+----------------------------------------------------------------------------------------
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 1, 3, 4, 'task-1', 1, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 1, 3, 4, 'task-2', 1, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 2, 3, 4, 'task-3', 1, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 2, 3, 4, 'task-4', 1, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 3, 3, 4, 'task-1', 2, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 3, 3, 4, 'task-2', 2, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 4, 3, 4, 'task-3', 2, 'des');
+
+INSERT INTO public.task(state, release_id, user_id_author, user_id_performer, name, project_id, description)
+	VALUES ('BACKLOG', 4, 3, 4, 'task-4', 2, 'des');

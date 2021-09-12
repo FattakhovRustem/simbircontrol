@@ -2,7 +2,17 @@ package com.simbirsoft.simbircontrol.entity;
 
 import com.simbirsoft.simbircontrol.enums.State;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 
 @Entity
@@ -26,11 +36,11 @@ public class Task {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_author", nullable = false)
-    private User userAuthor;
+    private Usr usrAuthor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_performer", nullable = false)
-    private User userPerformer;
+    private Usr usrPerformer;
 
     @Column(name = "name")
     private String name;
@@ -42,13 +52,13 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, State state, String description, Release release, User userAuthor, User userPerformer, String name, Project projectTask) {
+    public Task(Integer id, State state, String description, Release release, Usr usrAuthor, Usr usrPerformer, String name, Project projectTask) {
         this.id = id;
         this.state = state;
         this.description = description;
         this.release = release;
-        this.userAuthor = userAuthor;
-        this.userPerformer = userPerformer;
+        this.usrAuthor = usrAuthor;
+        this.usrPerformer = usrPerformer;
         this.name = name;
         this.projectTask = projectTask;
     }
@@ -85,20 +95,20 @@ public class Task {
         this.release = release;
     }
 
-    public User getUserAuthor() {
-        return userAuthor;
+    public Usr getUsrAuthor() {
+        return usrAuthor;
     }
 
-    public void setUserAuthor(User userAuthor) {
-        this.userAuthor = userAuthor;
+    public void setUsrAuthor(Usr usrAuthor) {
+        this.usrAuthor = usrAuthor;
     }
 
-    public User getUserPerformer() {
-        return userPerformer;
+    public Usr getUsrPerformer() {
+        return usrPerformer;
     }
 
-    public void setUserPerformer(User userPerformer) {
-        this.userPerformer = userPerformer;
+    public void setUsrPerformer(Usr usrPerformer) {
+        this.usrPerformer = usrPerformer;
     }
 
     public String getName() {
@@ -116,4 +126,5 @@ public class Task {
     public void setProjectTask(Project projectTask) {
         this.projectTask = projectTask;
     }
+
 }

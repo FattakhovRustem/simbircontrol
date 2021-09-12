@@ -2,7 +2,18 @@ package com.simbirsoft.simbircontrol.entity;
 
 import com.simbirsoft.simbircontrol.enums.State;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import java.util.List;
 
 
@@ -16,7 +27,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_leader", nullable = false)
-    private User userLeader;
+    private Usr usrLeader;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
@@ -44,9 +55,9 @@ public class Project {
     public Project() {
     }
 
-    public Project(Integer id, User userLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks, Long price) {
+    public Project(Integer id, Usr usrLeader, State state, String name, Client client, String description, List<Release> releases, List<Task> tasks, Long price) {
         this.id = id;
-        this.userLeader = userLeader;
+        this.usrLeader = usrLeader;
         this.state = state;
         this.name = name;
         this.client = client;
@@ -64,12 +75,12 @@ public class Project {
         this.id = id;
     }
 
-    public User getUserLeader() {
-        return userLeader;
+    public Usr getUsrLeader() {
+        return usrLeader;
     }
 
-    public void setUserLeader(User userLeader) {
-        this.userLeader = userLeader;
+    public void setUsrLeader(Usr usrLeader) {
+        this.usrLeader = usrLeader;
     }
 
     public State getState() {

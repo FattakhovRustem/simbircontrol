@@ -3,7 +3,6 @@ package com.simbirsoft.simbircontrol.rest;
 import com.simbirsoft.simbircontrol.rest.dto.ClientRequestDto;
 import com.simbirsoft.simbircontrol.rest.dto.ClientResponseDto;
 import com.simbirsoft.simbircontrol.service.ClientService;
-import com.simbirsoft.simbircontrol.service.converter.ClientConverter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;

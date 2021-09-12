@@ -72,4 +72,13 @@ public class ReleaseRequestDto {
     public void setDateEnd(LocalDateTime dateEnd) {
         this.dateEnd = dateEnd;
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", projectId = " + projectId +
+                ", version = " + version +
+                ", dateStart = " + (dateStart != null ? dateStart.toString() : "null") +
+                ", dateEnd = " + (dateEnd != null ? dateEnd.toString() : "null");
+    }
 }

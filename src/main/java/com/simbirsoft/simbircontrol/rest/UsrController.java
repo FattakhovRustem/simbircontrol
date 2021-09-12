@@ -1,8 +1,9 @@
 package com.simbirsoft.simbircontrol.rest;
 
-import com.simbirsoft.simbircontrol.rest.dto.UserRequestDto;
-import com.simbirsoft.simbircontrol.rest.dto.UserResponseDto;
-import com.simbirsoft.simbircontrol.service.UserService;
+import com.simbirsoft.simbircontrol.exception.NoEntityException;
+import com.simbirsoft.simbircontrol.rest.dto.UsrRequestDto;
+import com.simbirsoft.simbircontrol.rest.dto.UsrResponseDto;
+import com.simbirsoft.simbircontrol.service.UsrService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
@@ -24,56 +25,56 @@ import java.util.List;
 
 @Tag(name = "Управление пользователями")
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping(value = "/usr")
+public class UsrController {
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger logger = LoggerFactory.getLogger(UsrController.class);
 
-    private final UserService userService;
+    private final UsrService usrService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UsrController(UsrService usrService) {
+        this.usrService = usrService;
     }
 
     @Operation(summary = "Получить список пользователей")
     @GetMapping(value = "/all")
-    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
-        logger.info("GET /user/all");
-        List<UserResponseDto> list = userService.getAll();
+    public ResponseEntity<List<UsrResponseDto>> getAllUsrs() {
+        logger.info("GET /usr/all");
+        List<UsrResponseDto> list = usrService.getAll();
         return ResponseEntity.ok().body(list);
     }
 
     @Operation(summary = "Получить пользователя")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserResponseDto> getUser(@PathVariable Integer id) {
-        logger.info(String.format("GET /user id = %d", id));
-        UserResponseDto responseDto = userService.getById(id);
+    public ResponseEntity<UsrResponseDto> getUsr(@PathVariable Integer id) {
+        logger.info(String.format("GET /usr id = %d", id));
+        UsrResponseDto responseDto = usrService.getById(id);
         return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Создать пользователя")
     @PostMapping(value = "/create")
-    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto requestDto) {
-        logger.info("POST /user/create");
-        logger.debug("UserRequestDto {}", requestDto);
-        UserResponseDto responseDto = userService.create(requestDto);
+    public ResponseEntity<UsrResponseDto> createUsr(@RequestBody UsrRequestDto requestDto) {
+        logger.info("POST /usr/create");
+        logger.debug("UsrRequestDto {}", requestDto);
+        UsrResponseDto responseDto = usrService.create(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Изменить пользователя")
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<UserResponseDto> updateUser(@RequestBody UserRequestDto requestDto) {
-        logger.info(String.format("PUT /user/update id = %d", requestDto.getId()));
-        logger.debug("UserRequestDto {}", requestDto);
-        UserResponseDto responseDto = userService.update(requestDto);
+    public ResponseEntity<UsrResponseDto> updateUsr(@RequestBody UsrRequestDto requestDto) {
+        logger.info(String.format("PUT /usr/update id = %d", requestDto.getId()));
+        logger.debug("UsrRequestDto {}", requestDto);
+        UsrResponseDto responseDto = usrService.update(requestDto);
         return ResponseEntity.ok().body(responseDto);
     }
 
     @Operation(summary = "Удалить пользователя")
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity deleteUser(@PathVariable Integer id) {
-        logger.info(String.format("DELETE /user/delete id = %d", id));
-        userService.deleteById(id);
+    public ResponseEntity deleteUsr(@PathVariable Integer id) {
+        logger.info(String.format("DELETE /usr/delete id = %d", id));
+        usrService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
@@ -81,4 +82,11 @@ public class UserController {
     public ResponseEntity handleIOExcenption(IOException e) {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
+
+    /*
+    @ExceptionHandler(NoEntityException.class)
+    public ResponseEntity handleNoEntityException(NoEntityException e) {
+        return ResponseEntity.ok().body(e.getMessage());
+    }
+    */
 }

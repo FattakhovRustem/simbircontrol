@@ -107,4 +107,16 @@ public class TaskRequestDto {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", state = " + state +
+                ", releaseId = " + releaseId +
+                ", idAuthor = " + idAuthor +
+                ", idPerformer = " + idPerformer +
+                ", name = " + name +
+                ", projectId = " + projectId +
+                ", description = " + description;
+    }
 }

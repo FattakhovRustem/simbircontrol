@@ -2,12 +2,21 @@ package com.simbirsoft.simbircontrol.entity;
 
 import com.simbirsoft.simbircontrol.enums.Role;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import java.util.List;
+
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Usr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,20 +38,20 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "userLeader")
+    @OneToMany(mappedBy = "usrLeader")
     private List<Project> projectsLeader;
 
-    @OneToMany(mappedBy = "userAuthor")
+    @OneToMany(mappedBy = "usrAuthor")
     private List<Task> tasksAuthor;
 
-    @OneToMany(mappedBy = "userPerformer")
+    @OneToMany(mappedBy = "usrPerformer")
     private List<Task> tasksPerformer;
 
 
-    public User() {
+    public Usr() {
     }
 
-    public User(Integer id, Role role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
+    public Usr(Integer id, Role role, String surname, String name, String login, String password, List<Project> projectsLeader, List<Task> tasksAuthor, List<Task> tasksPerformer) {
         this.id = id;
         this.role = role;
         this.surname = surname;
@@ -125,4 +134,5 @@ public class User {
     public void setTasksPerformer(List<Task> tasksPerformer) {
         this.tasksPerformer = tasksPerformer;
     }
+
 }

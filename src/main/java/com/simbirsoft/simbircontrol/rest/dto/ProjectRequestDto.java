@@ -10,7 +10,7 @@ public class ProjectRequestDto {
     private Integer id;
 
     @Schema(description = "ID руководителя проекта")
-    private Integer userIdLeader;
+    private Integer usrIdLeader;
 
     @Schema(description = "Статус")
     private State state;
@@ -30,9 +30,9 @@ public class ProjectRequestDto {
     public ProjectRequestDto() {
     }
 
-    public ProjectRequestDto(Integer id, Integer userIdLeader, State state, String name, Integer clientId, String description, Long price) {
+    public ProjectRequestDto(Integer id, Integer usrIdLeader, State state, String name, Integer clientId, String description, Long price) {
         this.id = id;
-        this.userIdLeader = userIdLeader;
+        this.usrIdLeader = usrIdLeader;
         this.state = state;
         this.name = name;
         this.clientId = clientId;
@@ -48,12 +48,12 @@ public class ProjectRequestDto {
         this.id = id;
     }
 
-    public Integer getUserIdLeader() {
-        return userIdLeader;
+    public Integer getUsrIdLeader() {
+        return usrIdLeader;
     }
 
-    public void setUserIdLeader(Integer userIdLeader) {
-        this.userIdLeader = userIdLeader;
+    public void setUsrIdLeader(Integer usrIdLeader) {
+        this.usrIdLeader = usrIdLeader;
     }
 
     public State getState() {
@@ -94,5 +94,16 @@ public class ProjectRequestDto {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "id = " + id +
+                ", usrIdLeader = " + usrIdLeader +
+                ", state = " + state +
+                ", name = " + name +
+                ", clientId = " + clientId +
+                ", description = " + description +
+                ", price = " + price;
     }
 }

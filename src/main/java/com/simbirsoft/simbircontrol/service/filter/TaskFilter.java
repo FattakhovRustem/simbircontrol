@@ -31,8 +31,8 @@ public class TaskFilter implements Specification<Task> {
 
 
     public Predicate buildPredicate(Condition condition, Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        switch(condition.comparison) {
-            case eq:
+        switch(condition.getComparison()) {
+            case EQ:
                 return buildEqualsPredicate(condition, root, criteriaQuery, criteriaBuilder);
             default:
                 return buildEqualsPredicate(condition, root, criteriaQuery, criteriaBuilder);
@@ -41,10 +41,10 @@ public class TaskFilter implements Specification<Task> {
 
 
     private Predicate buildEqualsPredicate(Condition condition, Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        if (condition.type == Type.state) {
-            condition.value = State.valueOf((String) condition.value);
+        if (condition.getType() == Type.STATE) {
+            condition.setValue(State.valueOf((String) condition.getValue()));
         }
-        return criteriaBuilder.equal(root.get(condition.field), condition.value);
+        return criteriaBuilder.equal(root.get(condition.getField()), condition.getValue());
     }
 
 

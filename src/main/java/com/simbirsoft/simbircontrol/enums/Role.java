@@ -5,6 +5,7 @@ import com.simbirsoft.simbircontrol.exception.NoEnumException;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 public enum Role {
     ADMIN("ADMIN"),
@@ -17,7 +18,7 @@ public enum Role {
     Role(String name) {
         this.name = name;
     }
-
+/*
     @Converter(autoApply = true)
     public class RoleConverter implements AttributeConverter<Role, String> {
         @Override
@@ -27,8 +28,8 @@ public enum Role {
 
         @Override
         public Role convertToEntityAttribute(String s) {
-            return Arrays.stream(Role.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException("Role not found"));
+            return Arrays.stream(Role.values()).filter((p) -> p.name.equalsIgnoreCase(s)).findFirst().orElseThrow(() -> new NoEnumException(String.format(ResourceBundle.getBundle("resource").getString("roleNotFound"), s)));
         }
     }
-
+*/
 }

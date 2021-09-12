@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class NoEnumException extends RuntimeException {
-    public NoEnumException() {
+public class EnumIsNullException extends RuntimeException {
+    public EnumIsNullException() {
     }
 
-    public NoEnumException(String message) {
+    public EnumIsNullException(String message) {
         super(message);
     }
 }
